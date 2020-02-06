@@ -61,8 +61,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="009688" />
-                                      <entry key="foregroundImage" value="C:\Users\Vincenzo\Desktop\SMS\MisurApp\smslogoMAT.png" />
+                                      <entry key="foregroundImage" value="C:\Users\Vito\Desktop\immagini progetto android\environmetalsensor.jpg" />
+                                      <entry key="outputName" value="environmental_sensors" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -118,6 +118,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>
