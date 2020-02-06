@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MisurApp</string>
+    <string name="environmentalSensors">Environmental Sensors</string>
 </resources>
