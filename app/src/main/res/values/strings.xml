@@ -3,4 +3,8 @@
     <string name="environmentalSensors">Environmental Sensors</string>
     <string name="positionSensors">Position Sensors</string>
     <string name="motionSensors">Motion Sensors</string>
+    <string name="withoutLightSensor">Light Sensor not found</string>
+    <string name="withoutProximitySensor">Proximity Sensor not found</string>
+    <string name="withoutHumiditySensor">Humidity Sensor not found</string>
+    <string name="withoutGeomagneticFieldSensor">Geomagnetic Field Sensor not found</string>
 </resources>
