@@ -9,4 +9,10 @@
     <style name="FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
     </style>
+    <style name="cardText">
+        <item name="android:typeface">sans</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
 </resources>

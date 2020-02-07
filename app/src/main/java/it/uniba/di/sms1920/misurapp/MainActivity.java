@@ -8,18 +8,19 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView mEnvironmentalSensors;
+    CardView mEnvironmentalSensors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mEnvironmentalSensors = findViewById(R.id.imageEnvironmentalSensors);
+        mEnvironmentalSensors = (CardView) findViewById(R.id.cardEnvironment);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.setLogo(R.mipmap.ic_launcher_round);

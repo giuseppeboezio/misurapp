@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">MisurApp</string>
     <string name="environmentalSensors">Sensori Ambientali</string>
+    <string name="positionSensors">Sensori di Posizione</string>
+    <string name="motionSensors">Sensori Ambientali</string>
 </resources>
