@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +19,6 @@ public class EnvironmentActivity extends AppCompatActivity {
     private SensorManager mSensorManager;
     private Sensor mSensorLight;
     private Sensor mSensorHumidity;
-    private String mSensorLightName;
-    private String mSensorHumidityName;
     private Button mLightButton;
     private Button mHumidityButton;
 
@@ -36,7 +35,6 @@ public class EnvironmentActivity extends AppCompatActivity {
         //Setting Light Button
         mLightButton = (Button) findViewById(R.id.btnSensorLight);
         if(mSensorLight != null) {
-            mSensorLightName = mSensorLight.getName();
             mLightButton.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
@@ -44,14 +42,17 @@ public class EnvironmentActivity extends AppCompatActivity {
                 }
             });
         } else {
-            mSensorLightName = new String(getResources().getString(R.string.withoutLightSensor));
+            mLightButton.setOnClickListener(new Button.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(EnvironmentActivity.this, getResources().getString(R.string.withoutLightSensor), Toast.LENGTH_LONG).show();
+                }
+            });
         }
-        mLightButton.setText(mSensorLightName);
 
         //Setting Humidity Button
         mHumidityButton = (Button) findViewById(R.id.btnSensorHumidity);
         if(mSensorHumidity != null) {
-            mSensorHumidityName = mSensorLight.getName();
             mHumidityButton.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
@@ -59,9 +60,13 @@ public class EnvironmentActivity extends AppCompatActivity {
                 }
             });
         } else {
-            mSensorHumidityName = new String(getResources().getString(R.string.withoutHumiditySensor));
+            mHumidityButton.setOnClickListener(new Button.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(EnvironmentActivity.this, getResources().getString(R.string.withoutHumiditySensor), Toast.LENGTH_LONG).show();
+                }
+            });
         }
-        mHumidityButton.setText(mSensorHumidityName);
 
     }
 

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="176dp"
         android:layout_marginEnd="180dp"
-        android:text=""
+        android:text="@string/lightSensor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

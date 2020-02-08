@@ -8,4 +8,5 @@
     <string name="withoutProximitySensor">Sensore di Prossimita non trovato</string>
     <string name="withoutHumiditySensor">Sensore di Umidita non trovato</string>
     <string name="withoutGeomagneticFieldSensor">Sensore di Campo Magnetico non trovato</string>
+    <string name="lightSensor">Sensore di Luminosita</string>
 </resources>

@@ -7,4 +7,5 @@
     <string name="withoutProximitySensor">Proximity Sensor not found</string>
     <string name="withoutHumiditySensor">Humidity Sensor not found</string>
     <string name="withoutGeomagneticFieldSensor">Geomagnetic Field Sensor not found</string>
+    <string name="lightSensor">Light Sensor</string>
 </resources>
