@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SensorMagneticFieldActivity"></activity>
+        <activity android:name=".SensorStepCounterActivity"></activity>
+        <activity android:name=".SensorAccelerometerActivity" />
+        <activity android:name=".SensorMagneticFieldActivity" />
         <activity android:name=".SensorProximityActivity" />
         <activity android:name=".SensorHumidityActivity" />
         <activity android:name=".SensorLightActivity" />

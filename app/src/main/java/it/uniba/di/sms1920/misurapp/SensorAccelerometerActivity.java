@@ -1,5 +1,6 @@
 package it.uniba.di.sms1920.misurapp;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -8,20 +9,18 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class SensorProximityActivity extends AppCompatActivity implements SensorEventListener {
+public class SensorAccelerometerActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager mSensorManager;
-    private Sensor mSensorProximity;
+    private Sensor mSensorAccelerometer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sensor_proximity);
+        setContentView(R.layout.activity_sensor_accelerometer);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mSensorProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        mSensorAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     }
 
     @Override
@@ -31,14 +30,15 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
 
     @Override
     public final void onSensorChanged(SensorEvent event) {
-        float distance = event.values[0];
-
+        float x = event.values[0];
+        float y = event.values[1];
+        float z = event.values[2];
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this, mSensorProximity, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
