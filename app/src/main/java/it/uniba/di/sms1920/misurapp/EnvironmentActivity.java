@@ -1,6 +1,7 @@
 package it.uniba.di.sms1920.misurapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,30 +20,32 @@ public class EnvironmentActivity extends AppCompatActivity {
     private SensorManager mSensorManager;
     private Sensor mSensorLight;
     private Sensor mSensorHumidity;
-    private Button mLightButton;
-    private Button mHumidityButton;
+    private CardView mCardLight;
+    private CardView mCardHumidity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_environment);
 
-        /**mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         mSensorLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         mSensorHumidity = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
 
-        //Setting Light Button
+        //Setting Light Card
+
+        mCardLight = (CardView) findViewById(R.id.cardLight);
 
         if(mSensorLight != null) {
-            mLightButton.setOnClickListener(new View.OnClickListener(){
+            mCardLight.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     goSensorLight();
                 }
             });
         } else {
-            mLightButton.setOnClickListener(new Button.OnClickListener(){
+            mCardLight.setOnClickListener(new Button.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(EnvironmentActivity.this, getResources().getString(R.string.withoutLightSensor), Toast.LENGTH_LONG).show();
@@ -53,21 +56,21 @@ public class EnvironmentActivity extends AppCompatActivity {
         //Setting Humidity Button
 
         if(mSensorHumidity != null) {
-            mHumidityButton.setOnClickListener(new View.OnClickListener(){
+            mCardHumidity.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
                     goSensorHumidity();
                 }
             });
         } else {
-            mHumidityButton.setOnClickListener(new Button.OnClickListener(){
+            mCardHumidity.setOnClickListener(new Button.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(EnvironmentActivity.this, getResources().getString(R.string.withoutHumiditySensor), Toast.LENGTH_LONG).show();
                 }
             });
         }
-**/
+
     }
 
     private void goSensorLight() {
