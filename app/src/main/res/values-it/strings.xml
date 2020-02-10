@@ -21,5 +21,9 @@
     <string name="geomagneticFieldSensor">Sensore di campo Geomagnetico</string>
     <!--Description about using sensors -->
     <string name="lightDescription">Cambia la luminosita per oscurire gli occhiali del poliziotto</string>
+    <string name="accelerometerDescription">Muovi il dispositivo verticalmente per far partire il razzo, orizzontalmente per inclinarlo</string>
+    <string name="geomagneticDescription">Usa il dispositivo per cercare il Polo-Nord a bordo dello yatch</string>
+    <string name="proximityDescription">Avvicina la mano per battere il cinque</string>
+    <string name="stepcounterDescription">Cammina per far arrivare l\'uomo a scuola</string>
 
 </resources>
