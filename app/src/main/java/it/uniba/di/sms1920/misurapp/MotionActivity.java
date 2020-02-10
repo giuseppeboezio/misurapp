@@ -79,7 +79,7 @@ public class MotionActivity extends AppCompatActivity {
     }
 
     private void goSensorStepCounter(){
-        Intent intent = new Intent(this, SensorHumidityActivity.class);
+        Intent intent = new Intent(this, SensorStepCounterActivity.class);
         startActivity(intent);
     }
 
