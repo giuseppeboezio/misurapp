@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MisurApp</string>
+    <!--Sensors category -->
     <string name="environmentalSensors">Sensori Ambientali</string>
     <string name="positionSensors">Sensori di Posizione</string>
     <string name="motionSensors">Sensori Ambientali</string>
+    <!-- Messages for not supported sensors -->
     <string name="withoutLightSensor">Sensore di Luminosita non trovato</string>
     <string name="withoutProximitySensor">Sensore di Prossimita non trovato</string>
     <string name="withoutHumiditySensor">Sensore di Umidita non trovato</string>
     <string name="withoutGeomagneticFieldSensor">Sensore di Campo Magnetico non trovato</string>
+    <string name="withoutAccelerometerSensor">Sensore Accelerometro non trovato</string>
+    <string name="withoutStepCounterSensor">Sensore contapassi non trovato</string>
+    <!--Sensors name -->
     <string name="lightSensor">Sensore di Luminosita</string>
+    <string name="humiditySensor">Sensore di Umidita</string>
+    <string name="proximitySensor">Sensore di Prossimita</string>
+    <string name="accelerometerSensor">Sensore Accelerometro</string>
+    <string name="stepCounterSensor">Sensore Contapassi</string>
+    <string name="geomagneticFieldSensor">Sensore di campo Geomagnetico</string>
 </resources>

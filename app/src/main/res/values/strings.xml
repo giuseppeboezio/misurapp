@@ -1,11 +1,23 @@
 <resources>
     <string name="app_name">MisurApp</string>
+    <!--Sensors category -->
     <string name="environmentalSensors">Environmental Sensors</string>
     <string name="positionSensors">Position Sensors</string>
     <string name="motionSensors">Motion Sensors</string>
+    <!-- Messages for not supported sensors -->
     <string name="withoutLightSensor">Light Sensor not found</string>
     <string name="withoutProximitySensor">Proximity Sensor not found</string>
     <string name="withoutHumiditySensor">Humidity Sensor not found</string>
     <string name="withoutGeomagneticFieldSensor">Geomagnetic Field Sensor not found</string>
+    <string name="withoutAccelerometerSensor">Accelerometer Sensor not found</string>
+    <string name="withoutStepCounterSensor">Step Counter Sensor not found</string>
+    <!--Sensors name -->
     <string name="lightSensor">Light Sensor</string>
+    <string name="humiditySensor">Humidity Sensor</string>
+    <string name="proximitySensor">Proximity Sensor</string>
+    <string name="accelerometerSensor">Accelerometer Sensor</string>
+    <string name="stepCounterSensor">Step Counter Sensor</string>
+    <string name="geomagneticFieldSensor">Geomagnetic Sensor</string>
+    <!--Description about using sensors -->
+    
 </resources>
