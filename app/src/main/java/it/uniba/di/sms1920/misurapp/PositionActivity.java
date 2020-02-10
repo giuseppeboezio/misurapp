@@ -1,6 +1,7 @@
 package it.uniba.di.sms1920.misurapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -19,10 +21,8 @@ public class PositionActivity extends AppCompatActivity {
     private SensorManager mSensorManager;
     private Sensor mSensorProximity;
     private Sensor mSensorMagneticField;
-    private String mSensorProximityName;
-    private String  mSensorMagneticFieldName;
-    private Button mProximityButton;
-    private Button mMagneticFieldButton;
+    private CardView mCardProximity;
+    private CardView mCardGeomagnetic;
 
 
     @Override
@@ -36,36 +36,45 @@ public class PositionActivity extends AppCompatActivity {
         mSensorProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         mSensorMagneticField = mSensorManager.getDefaultSensor((Sensor.TYPE_MAGNETIC_FIELD));
 
-        //Setting Proximity Button
-        mProximityButton = (Button) findViewById(R.id.btnSensorProximity);
+        //Setting Proximity Card
+
+        mCardProximity = (CardView) findViewById(R.id.cardProximity);
+
         if(mSensorProximity != null){
-            mSensorProximityName = mSensorProximity.getName();
-            mProximityButton.setOnClickListener(new Button.OnClickListener(){
+            mCardProximity.setOnClickListener(new Button.OnClickListener(){
                 @Override
                 public void onClick(View v){
                     goSensorProximity();
                 }
             });
         } else {
-            mSensorProximityName = new String(getResources().getString(R.string.withoutProximitySensor));
+            mCardProximity.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(PositionActivity.this, getResources().getString(R.string.withoutProximitySensor), Toast.LENGTH_LONG).show();
+                }
+            });
         }
-        mProximityButton.setText(mSensorProximityName);
 
-        //Setting Magnetic Field Button
-        mMagneticFieldButton = (Button) findViewById(R.id.btnSensorMagneticField);
+
+        //Setting Proximity Card
+
+        mCardGeomagnetic = (CardView) findViewById(R.id.cardGeomagnetic);
         if(mSensorMagneticField != null){
-            mSensorMagneticFieldName = mSensorMagneticField.getName();
-            mMagneticFieldButton.setOnClickListener(new Button.OnClickListener(){
+            mCardGeomagnetic.setOnClickListener(new Button.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     goSensorMagneticField();
                 }
             });
         } else {
-            mSensorMagneticFieldName = new String(getResources().getString(R.string.withoutGeomagneticFieldSensor));
+            mCardGeomagnetic.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(PositionActivity.this, getResources().getString(R.string.withoutGeomagneticFieldSensor), Toast.LENGTH_LONG).show();
+                }
+            });
         }
-        mMagneticFieldButton.setText(mSensorMagneticFieldName);
-
 
 
 
