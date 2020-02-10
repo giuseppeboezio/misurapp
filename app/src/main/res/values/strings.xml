@@ -23,6 +23,6 @@
     <string name="accelerometerDescription">Shake your device vertically to launch the rocket, horizontally to change the rotation</string>
     <string name="geomagneticDescription">Use your device to find North-Pole on your yatch</string>
     <string name="proximityDescription">Move your hand near the device to give the five</string>
-    <string name="stepcounterDescription">Walk to get the man to school</string>
+    <string name="stepCounterDescription">Walk to make the biker move along the street</string>
 
 </resources>
