@@ -27,13 +27,13 @@ public class EnvironmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_environment);
 
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        /**mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         mSensorLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         mSensorHumidity = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
 
         //Setting Light Button
-        mLightButton = (Button) findViewById(R.id.btnSensorLight);
+
         if(mSensorLight != null) {
             mLightButton.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -51,7 +51,7 @@ public class EnvironmentActivity extends AppCompatActivity {
         }
 
         //Setting Humidity Button
-        mHumidityButton = (Button) findViewById(R.id.btnSensorHumidity);
+
         if(mSensorHumidity != null) {
             mHumidityButton.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -67,7 +67,7 @@ public class EnvironmentActivity extends AppCompatActivity {
                 }
             });
         }
-
+**/
     }
 
     private void goSensorLight() {

@@ -4,23 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/proximity_background"
     tools:context=".SensorProximityActivity"
     >
 
 
-    <RelativeLayout
-        android:id="@+id/activity_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="0dp">
+    <ImageView
+        android:id="@+id/img_hand"
+        android:layout_width="190dp"
+        android:layout_height="181dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="252dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_disegno" />
 
-        <ImageView
-            android:id="@+id/img_hand"
-            android:layout_width="267dp"
-            android:layout_height="257dp"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/ic_disegno" />
-
-    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,5 +19,6 @@
     <string name="stepCounterSensor">Step Counter Sensor</string>
     <string name="geomagneticFieldSensor">Geomagnetic Sensor</string>
     <!--Description about using sensors -->
-    
+    <string name="lightDescription">Change the lightness to darken policeman\'s sunglasses</string>
+
 </resources>
