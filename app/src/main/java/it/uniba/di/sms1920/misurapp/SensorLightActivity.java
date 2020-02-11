@@ -63,7 +63,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
         }
 
         mAlphaAnimation = new AlphaAnimation(fromAlpha, toAlpha);
-        mAlphaAnimation.setDuration(200);
+        mAlphaAnimation.setDuration(1000);
         mAlphaAnimation.setFillAfter(true);
         mAlphaAnimation.setInterpolator(new LinearInterpolator());
         mSunglasses.setAnimation(mAlphaAnimation);

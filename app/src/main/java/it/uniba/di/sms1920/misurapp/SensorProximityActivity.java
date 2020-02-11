@@ -80,7 +80,7 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
         }
 
         scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
-        scaleAnimation.setDuration(200);
+        scaleAnimation.setDuration(1000);
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setInterpolator(new LinearInterpolator());
 

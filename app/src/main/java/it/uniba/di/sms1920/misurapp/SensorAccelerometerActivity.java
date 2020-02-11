@@ -22,8 +22,6 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
     private Sensor mSensorAccelerometer;
     private ConstraintLayout mGalaxy;
     private AnimationDrawable mLeavingRocket;
-    private boolean firstTime;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +46,16 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
     @Override
     public final void onSensorChanged(SensorEvent event) {
 
-            mLeavingRocket.start();
+            float x = event.values[0];
+            float y = event.values[1];
+            float z = event.values[2];
+
+            if(x > 3 && y > 3 && z > 3) {
+                mLeavingRocket.start();
+            }
+
+            Log.i("SENSORS", x + ", " + y + ", " + z);
+
     }
 
     @Override
