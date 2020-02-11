@@ -29,7 +29,7 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
         setContentView(R.layout.activity_sensor_accelerometer);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mSensorAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        mSensorAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         mGalaxy = (ConstraintLayout) findViewById(R.id.galaxy);
         mGalaxy.setBackgroundResource(R.drawable.rocket_animation);
@@ -46,15 +46,11 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
     @Override
     public final void onSensorChanged(SensorEvent event) {
 
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
+            int y = Math.round(event.values[1]);
 
-            if(y > 3) {
+            if(y >= 3) {
                 mLeavingRocket.start();
             }
-
-            Log.i("SENSORS", x + ", " + y + ", " + z);
 
     }
 
