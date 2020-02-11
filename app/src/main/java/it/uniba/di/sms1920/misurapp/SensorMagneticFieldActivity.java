@@ -1,7 +1,6 @@
 package it.uniba.di.sms1920.misurapp;
 
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -16,11 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SensorMagneticFieldActivity extends AppCompatActivity implements SensorEventListener {
 
-    private SensorManager mSensorManager;
-    private Sensor mSensorGeomagneticField;
-    private ImageView boat;
-    private TextView txt_compass;
+    ImageView compass_img;
+    TextView txt_compass;
     int mAzimuth;
+    private SensorManager mSensorManager;
     private Sensor mRotationV, mAccelerometer, mMagnetometer;
     boolean haveSensor = false, haveSensor2 = false;
     float[] rMat = new float[9];
@@ -36,19 +34,14 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
         setContentView(R.layout.activity_sensor_magnetic_field);
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        boat = (ImageView) findViewById(R.id.boat);
+        compass_img = (ImageView) findViewById(R.id.boat);
         txt_compass = (TextView) findViewById(R.id.txt_azimuth);
 
         start();
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Do something here if sensor accuracy changes.
-    }
-
-    @Override
-    public final void onSensorChanged(SensorEvent event) {
+    public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
             SensorManager.getRotationMatrixFromVector(rMat, event.values);
             mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
@@ -68,7 +61,7 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
         }
 
         mAzimuth = Math.round(mAzimuth);
-        boat.setRotation(-mAzimuth);
+        compass_img.setRotation(-mAzimuth);
 
         String where = "NW";
 
@@ -94,15 +87,8 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        stop();
-    }
+    public void onAccuracyChanged(Sensor sensor, int i) {
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        stop();
     }
 
     public void start() {
@@ -136,13 +122,25 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
     }
 
     public void stop() {
-        if(haveSensor && haveSensor2){
-            mSensorManager.unregisterListener(this,mAccelerometer);
-            mSensorManager.unregisterListener(this,mMagnetometer);
+        if (haveSensor) {
+            mSensorManager.unregisterListener(this, mRotationV);
         }
-        else{
-            if(haveSensor)
-                mSensorManager.unregisterListener(this,mRotationV);
+        else {
+            mSensorManager.unregisterListener(this, mAccelerometer);
+            mSensorManager.unregisterListener(this, mMagnetometer);
         }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        start();
+    }
+
 }
