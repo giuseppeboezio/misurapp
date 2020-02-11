@@ -1,8 +1,10 @@
 package it.uniba.di.sms1920.misurapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -18,7 +20,9 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
 
     private SensorManager mSensorManager;
     private Sensor mSensorAccelerometer;
-    private ImageView mRocket;
+    private ConstraintLayout mGalaxy;
+    private AnimationDrawable mLeavingRocket;
+    private boolean firstTime;
 
 
     @Override
@@ -27,10 +31,11 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
         setContentView(R.layout.activity_sensor_accelerometer);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mSensorAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mSensorAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
-        mRocket = (ImageView) findViewById(R.id.img_rocket);
-
+        mGalaxy = (ConstraintLayout) findViewById(R.id.galaxy);
+        mGalaxy.setBackgroundResource(R.drawable.rocket_animation);
+        mLeavingRocket = (AnimationDrawable) mGalaxy.getBackground();
 
 
     }
@@ -42,14 +47,8 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
 
     @Override
     public final void onSensorChanged(SensorEvent event) {
-        float x = event.values[0];
-        float y = event.values[1];
-        float z = event.values[2];
 
-
-
-
-
+            mLeavingRocket.start();
     }
 
     @Override
