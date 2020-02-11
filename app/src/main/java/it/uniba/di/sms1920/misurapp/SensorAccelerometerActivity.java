@@ -8,11 +8,18 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.RotateAnimation;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 
 public class SensorAccelerometerActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager mSensorManager;
     private Sensor mSensorAccelerometer;
+    private ImageView mRocket;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +28,11 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        mRocket = (ImageView) findViewById(R.id.img_rocket);
+
+
+
     }
 
     @Override
@@ -33,6 +45,11 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
         float x = event.values[0];
         float y = event.values[1];
         float z = event.values[2];
+
+
+
+
+
     }
 
     @Override
