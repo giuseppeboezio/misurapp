@@ -58,17 +58,25 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
             toX = 1;
             toY = 1;
         }
-        else if (distance > 4 && distance < 10){
+        else if (distance > 7 && distance < 10){
+
+            toX = (float) 1.1;
+            toY = (float) 1.1;
+
+        }
+        else if (distance > 5 && distance < 8) {
 
             toX = (float) 1.3;
             toY = (float) 1.3;
 
         }
-        else {
-
+        else if (distance > 3 && distance < 6) {
+            toX = (float) 1.5;
+            toY = (float) 1.5;
+        }
+        else if (distance >= 0 && distance < 4) {
             toX = (float) 1.7;
             toY = (float) 1.7;
-
         }
 
         scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
