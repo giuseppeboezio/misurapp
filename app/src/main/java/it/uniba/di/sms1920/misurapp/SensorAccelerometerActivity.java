@@ -61,6 +61,7 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
     @Override
     protected void onResume() {
         super.onResume();
+        mSensorManager.unregisterListener(this);
         mSensorManager.registerListener(this, mSensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 

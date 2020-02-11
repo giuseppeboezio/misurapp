@@ -8,7 +8,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SensorMagneticFieldActivity extends AppCompatActivity implements SensorEventListener {
 
     ImageView compass_img;
-    TextView txt_compass;
     int mAzimuth;
     private SensorManager mSensorManager;
     private Sensor mRotationV, mAccelerometer, mMagnetometer;
@@ -35,7 +33,6 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         compass_img = (ImageView) findViewById(R.id.boat);
-        txt_compass = (TextView) findViewById(R.id.txt_azimuth);
 
         start();
     }
@@ -63,27 +60,6 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
         mAzimuth = Math.round(mAzimuth);
         compass_img.setRotation(-mAzimuth);
 
-        String where = "NW";
-
-        if (mAzimuth >= 350 || mAzimuth <= 10)
-            where = "N";
-        if (mAzimuth < 350 && mAzimuth > 280)
-            where = "NW";
-        if (mAzimuth <= 280 && mAzimuth > 260)
-            where = "W";
-        if (mAzimuth <= 260 && mAzimuth > 190)
-            where = "SW";
-        if (mAzimuth <= 190 && mAzimuth > 170)
-            where = "S";
-        if (mAzimuth <= 170 && mAzimuth > 100)
-            where = "SE";
-        if (mAzimuth <= 100 && mAzimuth > 80)
-            where = "E";
-        if (mAzimuth <= 80 && mAzimuth > 10)
-            where = "NE";
-
-
-        txt_compass.setText(mAzimuth + "° " + where);
     }
 
     @Override
