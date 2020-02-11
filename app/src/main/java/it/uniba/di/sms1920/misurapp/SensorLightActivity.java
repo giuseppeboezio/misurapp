@@ -46,25 +46,19 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
         float lux = event.values[0];
         fromAlpha = toAlpha;
 
-        if(lux >= 0 && lux < 4001){
+        if(lux < 100){
             toAlpha = (float) 0.1;
-        } else if(lux > 4000 && lux < 8001){
-            toAlpha = (float) 0.2;
-        } else if(lux > 8000 && lux < 12001) {
+        } else if(lux >= 100 && lux < 200) {
             toAlpha = (float) 0.3;
-        } else if(lux > 12000 && lux < 16001) {
-            toAlpha = (float) 0.4;
-        } else if(lux > 16000 && lux < 20001) {
+        } else if(lux >= 200 && lux < 300) {
             toAlpha = (float) 0.5;
-        } else if(lux > 20000 && lux < 24001) {
-            toAlpha = (float) 0.6;
-        } else if(lux > 24000 && lux < 28001) {
+        } else if(lux >= 300 && lux < 400) {
             toAlpha = (float) 0.7;
-        } else if(lux > 28000 && lux < 32001) {
+        } else if(lux >= 400 && lux < 500) {
             toAlpha = (float) 0.8;
-        } else if(lux > 32000 && lux < 36001) {
+        } else if(lux >= 500 && lux < 600 ) {
             toAlpha = (float) 0.9;
-        } else if(lux > 36000 && lux < 40001) {
+        } else if(lux >= 600) {
             toAlpha = (float) 1.0;
         }
 
