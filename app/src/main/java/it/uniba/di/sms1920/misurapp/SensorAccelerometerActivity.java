@@ -48,7 +48,7 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
 
             int y = Math.round(event.values[1]);
 
-            if(y >= 3) {
+            if(y >= 11) {
                 mLeavingRocket.start();
             }
 
