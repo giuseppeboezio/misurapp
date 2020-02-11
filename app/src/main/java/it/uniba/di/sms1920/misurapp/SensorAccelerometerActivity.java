@@ -52,6 +52,7 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
 
             if(y > 3) {
                 mLeavingRocket.start();
+                mLeavingRocket.stop();
             }
 
             Log.i("SENSORS", x + ", " + y + ", " + z);
