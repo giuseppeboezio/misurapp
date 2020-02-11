@@ -51,8 +51,9 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
             float z = event.values[2];
 
             if(y > 3) {
+                mGalaxy.setBackgroundResource(R.drawable.rocket_animation);
+                mLeavingRocket = (AnimationDrawable) mGalaxy.getBackground();
                 mLeavingRocket.start();
-                mLeavingRocket.stop();
             }
 
             Log.i("SENSORS", x + ", " + y + ", " + z);
