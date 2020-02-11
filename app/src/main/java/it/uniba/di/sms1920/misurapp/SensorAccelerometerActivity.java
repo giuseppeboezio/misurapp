@@ -50,7 +50,7 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
             float y = event.values[1];
             float z = event.values[2];
 
-            if(x > 3 && y > 3 && z > 3) {
+            if(y > 3) {
                 mLeavingRocket.start();
             }
 
