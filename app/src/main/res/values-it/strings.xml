@@ -4,7 +4,7 @@
     <!--Sensors category -->
     <string name="environmentalSensors">Sensori Ambientali</string>
     <string name="positionSensors">Sensori di Posizione</string>
-    <string name="motionSensors">Sensori Ambientali</string>
+    <string name="motionSensors">Sensori di Movimento</string>
     <!-- Messages for not supported sensors -->
     <string name="withoutLightSensor">Sensore di Luminosita non trovato</string>
     <string name="withoutProximitySensor">Sensore di Prossimita non trovato</string>
@@ -25,5 +25,6 @@
     <string name="geomagneticDescription">Usa il dispositivo per cercare il Polo-Nord a bordo dello yatch</string>
     <string name="proximityDescription">Avvicina la mano per battere il cinque</string>
     <string name="stepCounterDescription">Cammina per far muovere la ciclista lungo la strada</string>
+    <string name="showHistory">Mostra Storico</string>
 
 </resources>

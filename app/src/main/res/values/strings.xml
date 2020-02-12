@@ -24,5 +24,6 @@
     <string name="geomagneticDescription">Use your device to find North-Pole on your yatch</string>
     <string name="proximityDescription">Move your hand near the device to give the five</string>
     <string name="stepCounterDescription">Walk to make the biker move along the street</string>
+    <string name="showHistory">Show History</string>
 
 </resources>
