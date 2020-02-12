@@ -1,6 +1,7 @@
 package it.uniba.di.sms1920.misurapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -9,10 +10,13 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -25,6 +29,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     private SensorManager mSensorManager;
     private Sensor mSensorLight;
     private ImageView mSunglasses;
+    Toolbar myToolbar;
     private AlphaAnimation mAlphaAnimation;
     private float fromAlpha, toAlpha;
     private Set<Detection> detections;
@@ -34,6 +39,15 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_light);
+
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        myToolbar.setLogo(R.mipmap.ic_launcher_round);
+        myToolbar.setTitle(R.string.app_name);
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
+        setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         detections = new HashSet<Detection>();
 
@@ -102,9 +116,30 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     protected void onPause() {
         super.onPause();
         mSensorManager.unregisterListener(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_sensor, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.saveIcon) {
+            saveDetection();
+        } else {
+            finish();
+        }
+        return true;
+    }
+
+    private void saveDetection() {
         for(Detection det: detections) {
             DetectionSQLite.add(this, det);
         }
+        Toast.makeText(this, "Detections saved", Toast.LENGTH_LONG).show();
     }
 
 }
