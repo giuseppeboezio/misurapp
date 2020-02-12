@@ -44,6 +44,16 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     @Override
     public final void onSensorChanged(SensorEvent event) {
         float lux = event.values[0];
+
+        Detection lightDetection = new Detection();
+        lightDetection.setSensorName(event.sensor.getName());
+        lightDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        lightDetection.setValues(event.values[0]);
+
+        DetectionSQLite.add(this, lightDetection);
+
+
+
         fromAlpha = toAlpha;
 
         if(lux < 100){
