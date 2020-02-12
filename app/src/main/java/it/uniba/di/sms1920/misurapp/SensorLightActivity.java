@@ -54,14 +54,17 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     public final void onSensorChanged(SensorEvent event) {
         float lux = event.values[0];
 
+        //Managing sensor change for persistance
+
         Detection lightDetection = new Detection();
 
         lightDetection.setSensorType(event.sensor.getType());
-        lightDetection.setDateTimeDetection(/*Detection.getFormattedDatetime(event.timestamp)*/"data");
+        lightDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
         lightDetection.setValues(event.values[0]);
 
         detections.add(lightDetection);
 
+        //Setting animation
 
         fromAlpha = toAlpha;
 
