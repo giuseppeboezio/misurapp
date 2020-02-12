@@ -8,10 +8,16 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 public class SensorLightActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -21,12 +27,15 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     private ImageView mSunglasses;
     private AlphaAnimation mAlphaAnimation;
     private float fromAlpha, toAlpha;
+    private Set<Detection> detections;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_light);
+
+        detections = new HashSet<Detection>();
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
@@ -46,12 +55,12 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
         float lux = event.values[0];
 
         Detection lightDetection = new Detection();
-        lightDetection.setSensorName(event.sensor.getName());
-        lightDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+
+        lightDetection.setSensorType(event.sensor.getType());
+        lightDetection.setDateTimeDetection(/*Detection.getFormattedDatetime(event.timestamp)*/"data");
         lightDetection.setValues(event.values[0]);
 
-        DetectionSQLite.add(this, lightDetection);
-
+        detections.add(lightDetection);
 
 
         fromAlpha = toAlpha;
@@ -83,7 +92,6 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     @Override
     protected void onResume() {
         super.onResume();
-        mSensorManager.unregisterListener(this);
         mSensorManager.registerListener(this, mSensorLight, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
@@ -91,5 +99,10 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     protected void onPause() {
         super.onPause();
         mSensorManager.unregisterListener(this);
+        for(Detection det: detections) {
+            DetectionSQLite.add(this, det);
+            Log.i("INSERIMENTO_DATI", String.valueOf(det.getValues(0)));
+        }
     }
+
 }

@@ -21,9 +21,8 @@ public class EnvironmentActivity extends AppCompatActivity {
 
     private SensorManager mSensorManager;
     private Sensor mSensorLight;
-    private Sensor mSensorHumidity;
     private CardView mCardLight;
-    private CardView mCardHumidity;
+    private Button mButtonLight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +38,11 @@ public class EnvironmentActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mButtonLight = (Button) findViewById(R.id.btnHistoryLight);
+
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         mSensorLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        mSensorHumidity = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
 
         //Setting Light Card
 
@@ -64,25 +64,13 @@ public class EnvironmentActivity extends AppCompatActivity {
             });
         }
 
-        //Setting Humidity Button
 
-        /**if(mSensorHumidity != null) {
-            mCardHumidity.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    goSensorHumidity();
-                }
-            });
-        } else {
-            mCardHumidity.setOnClickListener(new Button.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(EnvironmentActivity.this, getResources().getString(R.string.withoutHumiditySensor), Toast.LENGTH_LONG).show();
-                }
-            });
-        }
-         **/
-
+        mButtonLight.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                goHistory();
+            }
+        });
     }
 
     @Override
@@ -98,6 +86,12 @@ public class EnvironmentActivity extends AppCompatActivity {
 
     private void goSensorHumidity(){
         Intent intent = new Intent(this, SensorHumidityActivity.class);
+        startActivity(intent);
+    }
+
+    private void goHistory() {
+        Intent intent = new Intent(this, HistoryActivity.class);
+        intent.putExtra(DetectionOpenHelper.SENSOR_TYPE, Sensor.TYPE_LIGHT);
         startActivity(intent);
     }
 }

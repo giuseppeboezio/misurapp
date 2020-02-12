@@ -9,17 +9,17 @@ public class DetectionOpenHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "MisurApp";
     public static final String DETECTION_TABLE = "detection";
-    public static final String _ID = "id";
-    public static final String SENSOR_NAME = "sensor_name";
+    public static final String ID = "_id";
+    public static final String SENSOR_TYPE = "sensor_type";
     public static final String DATETIME = "datetime";
     public static final String VALUE1 = "value1";
     public static final String VALUE2 = "value2";
     public static final String VALUE3 = "value3";
-    public static final String[] PROJECTION = {DATETIME, VALUE1, VALUE2, VALUE3};
+    public static final String[] PROJECTION = {ID, DATETIME, VALUE1, VALUE2, VALUE3};
     private static final String CREATE_TABLE =
             "CREATE TABLE " + DETECTION_TABLE + "(" +
-                    _ID + " integer primary key autoincrement, " +
-                    SENSOR_NAME + " varchar(50) not null, " +
+                    ID + " integer primary key autoincrement, " +
+                    SENSOR_TYPE + " integer not null, " +
                     DATETIME + " varchar(50) not null, " +
                     VALUE1 + " decimal(10,2) not null, " +
                     VALUE2 + " decimal(10,2), " +

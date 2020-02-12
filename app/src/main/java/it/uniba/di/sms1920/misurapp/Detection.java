@@ -1,5 +1,9 @@
 package it.uniba.di.sms1920.misurapp;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,12 +12,12 @@ import java.util.Date;
 
 public class Detection {
 
-    private String sensorName;
+    private int sensorType;
     private String dateTimeDetection;
     private float[] values = new float[3];
 
-    public void setSensorName(String sensorName) {
-        this.sensorName = sensorName;
+    public void setSensorType(int sensorType) {
+        this.sensorType = sensorType;
     }
 
     public void setDateTimeDetection(String dateTimeDetection) {
@@ -28,8 +32,8 @@ public class Detection {
         this.values = values;
     }
 
-    public String getSensorName() {
-        return sensorName;
+    public int getSensorType() {
+        return sensorType;
     }
 
     public String getDateTimeDetection() {
@@ -44,7 +48,7 @@ public class Detection {
         String result ;
 
         Duration duration = Duration.ofNanos(timestamp);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
         String durationString = duration.toString();
         Date date = new Date();
         try{

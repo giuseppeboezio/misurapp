@@ -16,7 +16,7 @@ public class DetectionSQLite {
         db = mDetection.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(DetectionOpenHelper.SENSOR_NAME, detection.getSensorName());
+        values.put(DetectionOpenHelper.SENSOR_TYPE, detection.getSensorType());
         values.put(DetectionOpenHelper.DATETIME, detection.getDateTimeDetection());
         values.put(DetectionOpenHelper.VALUE1, detection.getValues(0));
         values.put(DetectionOpenHelper.VALUE2, detection.getValues(1));
@@ -26,15 +26,15 @@ public class DetectionSQLite {
 
     }
 
-    public static Cursor getAllDetection(Context context, String sensorName) {
+    public static Cursor getAllDetection(Context context, int sensorType) {
 
         Cursor cursor;
 
         mDetection = new DetectionOpenHelper(context);
         db = mDetection.getReadableDatabase();
 
-        cursor = db.query(DetectionOpenHelper.DETECTION_TABLE,DetectionOpenHelper.PROJECTION,
-                DetectionOpenHelper.SENSOR_NAME + "= ?s", new String[]{sensorName},null,
+        cursor = db.query(DetectionOpenHelper.DETECTION_TABLE, DetectionOpenHelper.PROJECTION,
+                DetectionOpenHelper.SENSOR_TYPE + "=?", new String[]{String.valueOf(sensorType)},null,
                 null, DetectionOpenHelper.DATETIME);
 
         return  cursor;
