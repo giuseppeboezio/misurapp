@@ -104,7 +104,6 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
         mSensorManager.unregisterListener(this);
         for(Detection det: detections) {
             DetectionSQLite.add(this, det);
-            Log.i("INSERIMENTO_DATI", String.valueOf(det.getValues(0)));
         }
     }
 
