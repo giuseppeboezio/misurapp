@@ -49,6 +49,7 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
 
         fromX = 0;
         toX = 0;
+        toX2 = 0;
 
 
     }
@@ -79,8 +80,8 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
         animation2.setFillAfter(true);
         animation2.setInterpolator(new LinearInterpolator());
 
-        girlOnBike.startAnimation(animation1);
-        girlOnBike.startAnimation(animation2);
+        girlOnBike.setAnimation(animation1);
+        girlOnBike.setAnimation(animation2);
 
     }
 
