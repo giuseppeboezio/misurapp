@@ -4,6 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SensorStepCounterActivity">
+    tools:context=".SensorStepCounterActivity"
+    android:background="@drawable/city">
+
+
+    <ImageView
+        android:id="@+id/girl"
+        android:layout_width="115dp"
+        android:layout_height="162dp"
+        android:layout_marginEnd="568dp"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/runninggirl" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
