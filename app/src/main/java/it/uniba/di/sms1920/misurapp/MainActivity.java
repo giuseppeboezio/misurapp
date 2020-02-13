@@ -3,28 +3,27 @@ package it.uniba.di.sms1920.misurapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
+import android.widget.GridView;
+
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private CardView mEnvironmentalSensors;
-    private CardView mPositionSensors;
-    private CardView mMotionSensors;
+
+    Resources res;
+    GridView grid;
+    private int[] sensorImages;
+    private String[] sensorNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mEnvironmentalSensors = (CardView) findViewById(R.id.cardEnvironment);
-        mPositionSensors = (CardView) findViewById(R.id.cardPosition);
-        mMotionSensors = (CardView) findViewById(R.id.cardMotion);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.setLogo(R.mipmap.ic_launcher_round);
@@ -32,26 +31,19 @@ public class MainActivity extends AppCompatActivity {
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
         setSupportActionBar(myToolbar);
 
-        mEnvironmentalSensors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goEnvironmentalSensors();
-            }
-        });
+        res = getResources();
 
-        mPositionSensors.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                goPositionSensors();
-            }
-        });
+        sensorImages = new int[] {R.drawable.biker_in_the_city, R.drawable.image_geomagnetic_sensor,
+        R.drawable.policeman, R.drawable.proximity_image, R.drawable.rocket_with_galaxy};
 
-        mMotionSensors.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                goMotionSensors();
-            }
-        });
+        sensorNames = new String[] {res.getString(R.string.stepCounterSensor), res.getString(R.string.geomagneticFieldSensor),
+                res.getString(R.string.lightSensor), res.getString(R.string.proximitySensor), res.getString(R.string.accelerometerSensor)};
+
+        CustomAdapter adapter = new CustomAdapter(getApplicationContext(),sensorNames, sensorImages);
+        grid = findViewById(R.id.grid);
+        grid.setAdapter(adapter);
+
+
     }
 
     private void goEnvironmentalSensors() {
