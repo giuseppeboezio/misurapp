@@ -31,6 +31,8 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
     private float fromX2;
     private float toX2;
 
+    private TextView mShowDetection;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,8 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
         myToolbar.setTitle(R.string.stepCounterSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
         setSupportActionBar(myToolbar);
+
+        mShowDetection = (TextView) findViewById(R.id.showSteps);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
@@ -61,6 +65,12 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
 
     @Override
     public final void onSensorChanged(SensorEvent event) {
+
+        float steps = event.values[0];
+        String message = getResources().getQuantityString(R.plurals.numberSteps, (int) steps, steps);
+
+        mShowDetection.setText(message);
+
 
         fromX = toX/*2*/;
         toX = fromX + 300;

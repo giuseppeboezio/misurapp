@@ -30,5 +30,9 @@
         <item quantity="one">%d Rilevazione salvata</item>
         <item quantity="other">%d Rilevazioni salvate</item>
     </plurals>
+    <plurals name="numberSteps">
+        <item quantity="one">%d passo</item>
+        <item quantity="other">%d passi</item>
+    </plurals>
 
 </resources>

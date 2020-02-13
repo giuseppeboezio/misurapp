@@ -29,5 +29,9 @@
         <item quantity="one">%d Detection saved</item>
         <item quantity="other">%d Detections saved</item>
     </plurals>
+    <plurals name="numberSteps">
+        <item quantity="one">%d step</item>
+        <item quantity="other">%d steps</item>
+    </plurals>
 
 </resources>
