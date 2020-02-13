@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -67,6 +68,7 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
                     Y, Y);
         animation1.setDuration(1000);
         animation1.setFillAfter(true);
+        animation1.setInterpolator(new LinearInterpolator());
 
         fromX2 = toX;
         toX2 = (toX - fromX)/2;
@@ -75,6 +77,7 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
                 Y, Y);
         animation2.setDuration(1000);
         animation2.setFillAfter(true);
+        animation2.setInterpolator(new LinearInterpolator());
 
         girlOnBike.startAnimation(animation1);
         girlOnBike.startAnimation(animation2);

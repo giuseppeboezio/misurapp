@@ -141,6 +141,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
         int quantity = detections.size();
         String message = getResources().getQuantityString(R.plurals.saveMessage, quantity, quantity);
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        detections.clear();
     }
 
 }
