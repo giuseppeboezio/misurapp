@@ -62,26 +62,26 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
     @Override
     public final void onSensorChanged(SensorEvent event) {
 
-        fromX = toX2;
+        fromX = toX/*2*/;
         toX = fromX + 300;
 
         TranslateAnimation animation1 = new TranslateAnimation(fromX, toX,
                     Y, Y);
-        animation1.setDuration(1000);
+        animation1.setDuration(300);
         animation1.setFillAfter(true);
         animation1.setInterpolator(new LinearInterpolator());
 
         fromX2 = toX;
         toX2 = (toX - fromX)/2;
 
-        TranslateAnimation animation2 = new TranslateAnimation(fromX2, toX2,
+        /*TranslateAnimation animation2 = new TranslateAnimation(fromX2, toX2,
                 Y, Y);
-        animation2.setDuration(1000);
+        animation2.setDuration(300);
         animation2.setFillAfter(true);
-        animation2.setInterpolator(new LinearInterpolator());
+        animation2.setInterpolator(new LinearInterpolator());*/
 
-        girlOnBike.setAnimation(animation1);
-        girlOnBike.setAnimation(animation2);
+        girlOnBike.startAnimation(animation1);
+        //girlOnBike.startAnimation(animation2);
 
     }
 

@@ -82,7 +82,7 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setInterpolator(new LinearInterpolator());
 
-        highFiveHand.setAnimation(scaleAnimation);
+        highFiveHand.startAnimation(scaleAnimation);
 
     }
 
