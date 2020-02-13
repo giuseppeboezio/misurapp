@@ -16,6 +16,10 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class SensorStepCounterActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -28,10 +32,8 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
     private float fromX;
     private float toX;
 
-    private float fromX2;
-    private float toX2;
-
     private TextView mShowDetection;
+    private Set<Detection> detections;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
 
         mShowDetection = (TextView) findViewById(R.id.showSteps);
 
+        detections = new HashSet<Detection>();
+
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         girlOnBike = (ImageView) findViewById(R.id.girl);
@@ -53,8 +57,6 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
 
         fromX = 0;
         toX = 0;
-        toX2 = 0;
-
 
     }
 
@@ -67,13 +69,21 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
     public final void onSensorChanged(SensorEvent event) {
 
         float steps = event.values[0];
-        String message = getResources().getQuantityString(R.plurals.numberSteps, (int) steps, steps);
+        String message = getResources().getQuantityString(R.plurals.numberSteps, (int) steps, (int) steps);
 
         mShowDetection.setText(message);
 
+        Detection stepsDetection = new Detection();
 
-        fromX = toX/*2*/;
-        toX = fromX + 300;
+        stepsDetection.setSensorType(event.sensor.getType());
+        stepsDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        stepsDetection.setValues(event.values[0]);
+
+        detections.add(stepsDetection);
+
+
+        fromX = toX;
+        toX = fromX + 30;
 
         TranslateAnimation animation1 = new TranslateAnimation(fromX, toX,
                     Y, Y);
@@ -81,17 +91,7 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
         animation1.setFillAfter(true);
         animation1.setInterpolator(new LinearInterpolator());
 
-        fromX2 = toX;
-        toX2 = (toX - fromX)/2;
-
-        /*TranslateAnimation animation2 = new TranslateAnimation(fromX2, toX2,
-                Y, Y);
-        animation2.setDuration(300);
-        animation2.setFillAfter(true);
-        animation2.setInterpolator(new LinearInterpolator());*/
-
         girlOnBike.startAnimation(animation1);
-        //girlOnBike.startAnimation(animation2);
 
     }
 
@@ -103,8 +103,23 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
+
+        if (item.getItemId() == R.id.saveIcon) {
+            saveDetection();
+        } else {
+            finish();
+        }
         return true;
+    }
+
+    private void saveDetection() {
+        for(Detection det: detections) {
+            DetectionSQLite.add(this, det);
+        }
+        int quantity = detections.size();
+        String message = getResources().getQuantityString(R.plurals.saveMessage, quantity, quantity);
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        detections.clear();
     }
 
     @Override

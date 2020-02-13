@@ -14,9 +14,14 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class SensorProximityActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -28,6 +33,8 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
     private ImageView highFiveHand;
     private ScaleAnimation scaleAnimation;
     private float fromX, fromY, toX, toY;
+    private Set<Detection> detections;
+    private TextView showProximityData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,9 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
         setSupportActionBar(myToolbar);
 
         highFiveHand = (ImageView) findViewById(R.id.img_hand);
+
+        showProximityData = findViewById(R.id.proximityData);
+        detections = new HashSet<Detection>();
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -84,6 +94,16 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
 
         highFiveHand.startAnimation(scaleAnimation);
 
+        showProximityData.setText(String.valueOf(distance) + "  cm");
+
+        Detection proximityDetection = new Detection();
+
+        proximityDetection.setSensorType(event.sensor.getType());
+        proximityDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        proximityDetection.setValues(event.values[0]);
+
+        detections.add(proximityDetection);
+
     }
 
     @Override
@@ -94,8 +114,23 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
+
+        if (item.getItemId() == R.id.saveIcon) {
+            saveDetection();
+        } else {
+            finish();
+        }
         return true;
+    }
+
+    private void saveDetection() {
+        for(Detection det: detections) {
+            DetectionSQLite.add(this, det);
+        }
+        int quantity = detections.size();
+        String message = getResources().getQuantityString(R.plurals.saveMessage, quantity, quantity);
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        detections.clear();
     }
 
     @Override

@@ -33,6 +33,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     private AlphaAnimation mAlphaAnimation;
     private float fromAlpha, toAlpha;
     private Set<Detection> detections;
+    private TextView showLightData;
 
 
     @Override
@@ -48,6 +49,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        showLightData = findViewById(R.id.lightData);
         detections = new HashSet<Detection>();
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -67,6 +69,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     public final void onSensorChanged(SensorEvent event) {
         float lux = event.values[0];
 
+        showLightData.setText(String.valueOf(lux) + "  LX");
         //Managing sensor change for persistance
 
         Detection lightDetection = new Detection();

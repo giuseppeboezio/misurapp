@@ -10,10 +10,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class SensorMagneticFieldActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -28,6 +33,8 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
     private float[] mLastMagnetometer = new float[3];
     private boolean mLastAccelerometerSet = false;
     private boolean mLastMagnetometerSet = false;
+    private TextView showgeomagneticData;
+    private Set<Detection> detections;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,9 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
         myToolbar.setTitle(R.string.geomagneticFieldSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
         setSupportActionBar(myToolbar);
+
+        showgeomagneticData = findViewById(R.id.geomagneticData);
+        detections = new HashSet<Detection>();
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         compass_img = (ImageView) findViewById(R.id.boat);
@@ -66,7 +76,16 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
             mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
         }
 
+        Detection geomagneticDetection = new Detection();
+
+        geomagneticDetection.setSensorType(event.sensor.getType());
+        geomagneticDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        geomagneticDetection.setValues(event.values[0]);
+
+        detections.add(geomagneticDetection);
+
         mAzimuth = Math.round(mAzimuth);
+        showgeomagneticData.setText(mAzimuth + "°");
         compass_img.setRotation(-mAzimuth);
 
     }
@@ -84,8 +103,23 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
+
+        if (item.getItemId() == R.id.saveIcon) {
+            saveDetection();
+        } else {
+            finish();
+        }
         return true;
+    }
+
+    private void saveDetection() {
+        for(Detection det: detections) {
+            DetectionSQLite.add(this, det);
+        }
+        int quantity = detections.size();
+        String message = getResources().getQuantityString(R.plurals.saveMessage, quantity, quantity);
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        detections.clear();
     }
 
     public void start() {
