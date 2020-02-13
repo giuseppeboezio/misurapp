@@ -13,13 +13,13 @@ public class CustomAdapter extends BaseAdapter {
     private Context mContext;
     private String[] mSensorNames;
     private int[] mImages;
-    LayoutInflater inflater;
+    private LayoutInflater inflater;
 
     public CustomAdapter(Context context, String[] sensorNames, int[] images) {
         this.mContext = context;
         this.mSensorNames = sensorNames;
         this.mImages = images;
-        inflater = (LayoutInflater.from(mContext));
+        inflater = LayoutInflater.from(context);
 
     }
 
@@ -30,19 +30,19 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return  null;
+        return  position;
     }
 
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView (int position, View convertView, ViewGroup parent) {
 
-            convertView = inflater.inflate(R.layout.activity_main, null);
+            convertView = inflater.inflate(R.layout.square_layout, null);
             TextView textView = (TextView) convertView.findViewById(R.id.grid_text);
             ImageView imageView = (ImageView) convertView.findViewById(R.id.grid_image);
             textView.setText(mSensorNames[position]);
