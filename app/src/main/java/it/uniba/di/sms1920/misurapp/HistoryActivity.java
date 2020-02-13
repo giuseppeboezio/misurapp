@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.hardware.Sensor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.SimpleCursorAdapter;
+
+import android.widget.Toolbar;
 
 public class HistoryActivity extends ListActivity {
 
     private SimpleCursorAdapter mAdapter;
+    private Toolbar myToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +22,32 @@ public class HistoryActivity extends ListActivity {
 
         Intent intent = getIntent();
         int sensorType = intent.getIntExtra(DetectionOpenHelper.SENSOR_TYPE, 0);
+
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+
+        switch(sensorType) {
+            case Sensor.TYPE_ACCELEROMETER:
+                myToolbar.setTitle(R.string.accelerometerSensor);
+                break;
+            case Sensor.TYPE_LIGHT:
+                myToolbar.setTitle(R.string.lightSensor);
+                break;
+            case Sensor.TYPE_STEP_COUNTER:
+                myToolbar.setTitle(R.string.stepCounterSensor);
+                break;
+            case Sensor.TYPE_MAGNETIC_FIELD:
+                myToolbar.setTitle(R.string.geomagneticFieldSensor);
+                break;
+            case Sensor.TYPE_PROXIMITY:
+                myToolbar.setTitle(R.string.proximitySensor);
+                break;
+        }
+        myToolbar.setTitle(R.string.lightSensor);
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
+        setActionBar(myToolbar);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Cursor cursor = DetectionSQLite.getAllDetection(this, sensorType);
 
@@ -39,5 +69,11 @@ public class HistoryActivity extends ListActivity {
 
         setListAdapter(mAdapter);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
     }
 }
