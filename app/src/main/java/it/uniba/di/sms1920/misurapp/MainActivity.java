@@ -2,12 +2,16 @@ package it.uniba.di.sms1920.misurapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 
 import androidx.appcompat.widget.Toolbar;
@@ -18,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     Resources res;
     GridView grid;
+    SensorManager mSensorManager;
+    Sensor mSensor;
     private int[] sensorImages;
     private String[] sensorNames;
 
@@ -46,17 +52,43 @@ public class MainActivity extends AppCompatActivity {
         grid = findViewById(R.id.grid);
         grid.setAdapter(adapter);
 
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
         //Managing several sensors
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 switch(position){
-
+                    case 0:
+                        goThisSensor(Sensor.TYPE_STEP_COUNTER, SensorStepCounterActivity.class, R.string.withoutStepCounterSensor);
+                        break;
+                    case 1:
+                        goThisSensor(Sensor.TYPE_MAGNETIC_FIELD, SensorMagneticFieldActivity.class, R.string.withoutGeomagneticFieldSensor);
+                        break;
+                    case 2:
+                        goThisSensor(Sensor.TYPE_LIGHT, SensorLightActivity.class, R.string.withoutLightSensor);
+                        break;
+                    case 3:
+                        goThisSensor(Sensor.TYPE_PROXIMITY, SensorProximityActivity.class, R.string.withoutLightSensor);
+                        break;
+                    case 4:
+                        goThisSensor(Sensor.TYPE_ACCELEROMETER, SensorAccelerometerActivity.class, R.string.withoutAccelerometerSensor);
                 }
             }
         });
 
 
     }
+
+    private void goThisSensor(int type, Class activity, int message) {
+        mSensor = mSensorManager.getDefaultSensor(type);
+        if(mSensor != null) {
+            Intent intent = new Intent(this, activity);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this,res.getString(message), Toast.LENGTH_LONG).show();
+        }
+    }
+
 
 }
