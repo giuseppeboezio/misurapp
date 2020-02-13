@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         res = getResources();
 
+        //Creating gridview to display whole set sensors
         sensorImages = new int[] {R.drawable.biker_in_the_city, R.drawable.image_geomagnetic_sensor,
         R.drawable.policeman, R.drawable.proximity_image, R.drawable.rocket_with_galaxy};
 
@@ -43,21 +46,17 @@ public class MainActivity extends AppCompatActivity {
         grid = findViewById(R.id.grid);
         grid.setAdapter(adapter);
 
+        //Managing several sensors
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                switch(position){
+
+                }
+            }
+        });
+
 
     }
 
-    private void goEnvironmentalSensors() {
-        Intent intent = new Intent(this, EnvironmentActivity.class);
-        startActivity(intent);
-    }
-
-    private void goPositionSensors() {
-        Intent intent = new Intent(this, PositionActivity.class);
-        startActivity(intent);
-    }
-
-    private void goMotionSensors(){
-        Intent intent = new Intent(this, MotionActivity.class);
-        startActivity(intent);
-    }
 }
