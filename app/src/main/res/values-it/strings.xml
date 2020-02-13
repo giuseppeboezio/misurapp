@@ -18,7 +18,7 @@
     <string name="proximitySensor">Sensore di Prossimita</string>
     <string name="accelerometerSensor">Sensore Accelerometro</string>
     <string name="stepCounterSensor">Sensore Contapassi</string>
-    <string name="geomagneticFieldSensor">Sensore di campo Geomagnetico</string>
+    <string name="geomagneticFieldSensor">Sensore Geomagnetico</string>
     <!--Description about using sensors -->
     <string name="lightDescription">Cambia la luminosita per oscurire gli occhiali del poliziotto</string>
     <string name="accelerometerDescription">Muovi il dispositivo verticalmente per far partire il razzo, orizzontalmente per inclinarlo</string>
@@ -26,5 +26,9 @@
     <string name="proximityDescription">Avvicina la mano per battere il cinque</string>
     <string name="stepCounterDescription">Cammina per far muovere la ciclista lungo la strada</string>
     <string name="showHistory">Mostra Storico</string>
+    <plurals name="saveMessage">
+        <item quantity="one">%d Rilevazione salvata</item>
+        <item quantity="other">%d Rilevazioni salvate</item>
+    </plurals>
 
 </resources>

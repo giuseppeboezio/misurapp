@@ -25,5 +25,9 @@
     <string name="proximityDescription">Move your hand near the device to give the five</string>
     <string name="stepCounterDescription">Walk to make the biker move along the street</string>
     <string name="showHistory">Show History</string>
+    <plurals name="saveMessage">
+        <item quantity="one">%d Detection saved</item>
+        <item quantity="other">%d Detections saved</item>
+    </plurals>
 
 </resources>

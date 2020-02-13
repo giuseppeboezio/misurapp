@@ -1,6 +1,7 @@
 package it.uniba.di.sms1920.misurapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
@@ -11,6 +12,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
@@ -27,6 +30,12 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_accelerometer);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        myToolbar.setTitle(R.string.accelerometerSensor);
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
+        setSupportActionBar(myToolbar);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -52,6 +61,18 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
                 mLeavingRocket.start();
             }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_sensor, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
     }
 
     @Override

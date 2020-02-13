@@ -1,6 +1,7 @@
 package it.uniba.di.sms1920.misurapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -9,6 +10,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +34,12 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_step_counter);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        myToolbar.setTitle(R.string.stepCounterSensor);
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
+        setSupportActionBar(myToolbar);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
@@ -70,6 +79,18 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
         girlOnBike.startAnimation(animation1);
         girlOnBike.startAnimation(animation2);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_sensor, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
     }
 
     @Override

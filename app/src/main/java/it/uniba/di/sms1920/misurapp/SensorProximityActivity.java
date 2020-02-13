@@ -8,12 +8,15 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class SensorProximityActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -30,6 +33,12 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_proximity);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        myToolbar.setTitle(R.string.proximitySensor);
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
+        setSupportActionBar(myToolbar);
 
         highFiveHand = (ImageView) findViewById(R.id.img_hand);
 
@@ -75,6 +84,18 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
 
         highFiveHand.setAnimation(scaleAnimation);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_sensor, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
     }
 
     @Override

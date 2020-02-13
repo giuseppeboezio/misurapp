@@ -42,8 +42,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
 
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        myToolbar.setLogo(R.mipmap.ic_launcher_round);
-        myToolbar.setTitle(R.string.app_name);
+        myToolbar.setTitle(R.string.lightSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
         setSupportActionBar(myToolbar);
 

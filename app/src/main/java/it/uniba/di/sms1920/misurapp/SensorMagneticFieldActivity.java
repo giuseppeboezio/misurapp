@@ -7,10 +7,13 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class SensorMagneticFieldActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -30,6 +33,12 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_magnetic_field);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        myToolbar.setTitle(R.string.geomagneticFieldSensor);
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
+        setSupportActionBar(myToolbar);
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         compass_img = (ImageView) findViewById(R.id.boat);
@@ -65,6 +74,18 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_sensor, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
     }
 
     public void start() {
