@@ -65,7 +65,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
         fromX = toX;
         fromY = toY;
 
-        toY = (float) 1.5 * ambientTemperature;
+        toY = (float) -1.1 * ambientTemperature;
 
         scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
         scaleAnimation.setDuration(1000);
