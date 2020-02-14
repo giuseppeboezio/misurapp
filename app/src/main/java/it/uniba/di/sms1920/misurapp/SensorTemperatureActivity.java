@@ -70,7 +70,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
 
 
         scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
-        scaleAnimation.setDuration(1000);
+        scaleAnimation.setDuration(5000);
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setInterpolator(new LinearInterpolator());
 

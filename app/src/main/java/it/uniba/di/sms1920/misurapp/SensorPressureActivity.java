@@ -79,7 +79,6 @@ public class SensorPressureActivity extends AppCompatActivity implements SensorE
         fromY = toY;
 
         if (pressure >= 900){
-
             //show boom image
             baloon.setVisibility(View.INVISIBLE);
             boom.setVisibility(View.VISIBLE);
@@ -91,57 +90,47 @@ public class SensorPressureActivity extends AppCompatActivity implements SensorE
         if (pressure >= 0 && pressure < 100) {
             toX = (float) 1.1;
             toY = (float) 1.1;
-            boom.setVisibility(View.INVISIBLE);
         }
 
         else if (pressure >= 100 && pressure < 200) {
             toX = (float) 1.2;
             toY = (float) 1.2;
-            boom.setVisibility(View.INVISIBLE);
         }
 
         else if (pressure >= 200 && pressure < 300) {
             toX = (float) 1.3;
             toY = (float) 1.3;
-            boom.setVisibility(View.INVISIBLE);
         }
 
         else if (pressure >= 300 && pressure < 400) {
             toX = (float) 1.4;
             toY = (float) 1.4;
-            boom.setVisibility(View.INVISIBLE);
         }
 
         else if (pressure >= 400 && pressure < 500) {
             toX = (float) 1.5;
             toY = (float) 1.5;
-            boom.setVisibility(View.INVISIBLE);
         }
 
         else if (pressure >= 500 && pressure < 600) {
             toX = (float) 1.6;
             toY = (float) 1.6;
-            boom.setVisibility(View.INVISIBLE);
         }
 
         else if (pressure >= 600 && pressure < 700) {
             toX = (float) 1.7;
             toY = (float) 1.7;
-            boom.setVisibility(View.INVISIBLE);
         }
 
         else if (pressure >= 700 && pressure < 800) {
             toX = (float) 1.8;
             toY = (float) 1.8;
-            boom.setVisibility(View.INVISIBLE);
         }
 
         else if (pressure >= 800 && pressure < 900) {
             toX = (float) 1.9;
             toY = (float) 1.9;
-            boom.setVisibility(View.INVISIBLE);
         }
-
 
         scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
         scaleAnimation.setDuration(1000);
