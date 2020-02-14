@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         goThisSensor(Sensor.TYPE_LIGHT, SensorLightActivity.class, R.string.withoutLightSensor);
                         break;
                     case 3:
-                        goThisSensor(Sensor.TYPE_PROXIMITY, SensorProximityActivity.class, R.string.withoutLightSensor);
+                        goThisSensor(Sensor.TYPE_PROXIMITY, SensorProximityActivity.class, R.string.withoutProximitySensor);
                         break;
                     case 4:
                         goThisSensor(Sensor.TYPE_ACCELEROMETER, SensorAccelerometerActivity.class, R.string.withoutAccelerometerSensor);
