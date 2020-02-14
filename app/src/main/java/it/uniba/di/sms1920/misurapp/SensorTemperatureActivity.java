@@ -50,6 +50,9 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
 
         toX = 1;
         toY = 1;
+        fromX = toX;
+        fromY = 1;
+
 
     }
 
@@ -60,12 +63,11 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
 
     @Override
     public final void onSensorChanged(SensorEvent event) {
-        float ambientTemperature = event.values[0];
+       float ambientTemperature = event.values[0];
 
-        fromX = toX;
-        fromY = 0;
 
         toY = (float) -1.1 * ambientTemperature;
+
 
         scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
         scaleAnimation.setDuration(1000);
@@ -74,7 +76,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
 
         temperature.startAnimation(scaleAnimation);
 
-        showTemperatureData.setText(String.valueOf(ambientTemperature) + "  °C");
+       showTemperatureData.setText(String.valueOf(ambientTemperature) + "  °C");
 
         Detection temperatureDetection = new Detection();
 
@@ -115,7 +117,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
     @Override
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this, mSensorTemperature, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensorTemperature, 10000000);
     }
 
     @Override
