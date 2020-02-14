@@ -89,13 +89,19 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
             mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
         }
 
-        Detection geomagneticDetection = new Detection();
+        if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+            Detection geomagneticDetection = new Detection();
 
-        geomagneticDetection.setSensorType(event.sensor.getType());
-        geomagneticDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
-        geomagneticDetection.setValues(event.values[0]);
+            geomagneticDetection.setSensorType(event.sensor.getType());
+            geomagneticDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+            geomagneticDetection.setValues(event.values[0]);
+            geomagneticDetection.setValues(event.values[1]);
+            geomagneticDetection.setValues(event.values[2]);
 
-        detections.add(geomagneticDetection);
+            detections.add(geomagneticDetection);
+        }
+
+
 
         mAzimuth = Math.round(mAzimuth);
         showgeomagneticData.setText(mAzimuth + "°");
