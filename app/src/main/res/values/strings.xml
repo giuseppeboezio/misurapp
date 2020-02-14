@@ -12,6 +12,8 @@
     <string name="withoutAccelerometerSensor">Accelerometer Sensor not found</string>
     <string name="withoutStepCounterSensor">Step Counter Sensor not found</string>
     <string name="withoutPressureSensor">Pressure Sensor not found</string>
+    <string name="withoutTemperatureSensor">Temperature Sensor not found</string>
+
     <!--Sensors name -->
     <string name="lightSensor">Light Sensor</string>
     <string name="humiditySensor">Humidity Sensor</string>
@@ -20,6 +22,8 @@
     <string name="stepCounterSensor">Step Counter Sensor</string>
     <string name="geomagneticFieldSensor">Geomagnetic Sensor</string>
     <string name="pressureSensor">Pressure Sensor</string>
+    <string name="temperatureSensor">Temperature Sensor</string>
+
     <!--Description about using sensors -->
     <string name="lightDescription">Change the lightness to darken policeman\'s sunglasses</string>
     <string name="accelerometerDescription">Shake your device vertically to launch the rocket, horizontally to change the rotation</string>
