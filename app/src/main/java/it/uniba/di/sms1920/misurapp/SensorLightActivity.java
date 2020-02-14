@@ -10,7 +10,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,17 +21,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 public class SensorLightActivity extends AppCompatActivity implements SensorEventListener {
 
-    private TextView mTxtValue;
     private SensorManager mSensorManager;
     private Sensor mSensorLight;
     private ImageView mSunglasses;
-    Toolbar myToolbar;
+    private Toolbar myToolbar;
     private AlphaAnimation mAlphaAnimation;
     private float fromAlpha, toAlpha;
     private Set<Detection> detections;

@@ -42,6 +42,14 @@ public class HistoryActivity extends ListActivity {
             case Sensor.TYPE_PROXIMITY:
                 myToolbar.setTitle(R.string.proximitySensor);
                 break;
+            case Sensor.TYPE_RELATIVE_HUMIDITY:
+                myToolbar.setTitle(R.string.humiditySensor);
+                break;
+            case Sensor.TYPE_PRESSURE:
+                myToolbar.setTitle(R.string.pressureSensor);
+                break;
+            case Sensor.TYPE_AMBIENT_TEMPERATURE:
+                myToolbar.setTitle(R.string.pressureSensor);
         }
         myToolbar.setTitle(R.string.lightSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));

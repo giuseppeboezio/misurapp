@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,7 +13,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashSet;
@@ -24,6 +27,9 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
     private Sensor mSensorHumidity;
     private Toolbar myToolbar;
     private Set<Detection> detections;
+
+    private TextView showHumidityData;
+    private Button mBtnHistory;
 
     private ImageView mDrop1;
     private ImageView mDrop2;
@@ -54,6 +60,15 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
         setSupportActionBar(myToolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        showHumidityData = (TextView) findViewById(R.id.humidityData);
+        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+        mBtnHistory.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goHistory();
+            }
+        });
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorHumidity = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
@@ -89,6 +104,16 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
     public final void onSensorChanged(SensorEvent event) {
 
         final float relativeHumidity = event.values[0];
+
+        showHumidityData.setText(String.valueOf(relativeHumidity) + " %");
+
+        Detection humidityDetection = new Detection();
+
+        humidityDetection.setSensorType(event.sensor.getType());
+        humidityDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        humidityDetection.setValues(event.values[0]);
+
+        detections.add(humidityDetection);
 
         if(relativeHumidity > 0 && relativeHumidity <= 14) {
             mDrop1.setVisibility(View.VISIBLE);
@@ -194,5 +219,11 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
         String message = getResources().getQuantityString(R.plurals.saveMessage, quantity, quantity);
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         detections.clear();
+    }
+
+    private void goHistory() {
+        Intent intent = new Intent(this, HistoryActivity.class);
+        intent.putExtra(DetectionOpenHelper.SENSOR_TYPE, Sensor.TYPE_LIGHT);
+        startActivity(intent);
     }
 }
