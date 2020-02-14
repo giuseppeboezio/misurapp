@@ -76,8 +76,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 5:
                         goThisSensor(Sensor.TYPE_RELATIVE_HUMIDITY, SensorHumidityActivity.class, R.string.withoutHumiditySensor);
+                        break;
                     case 6:
                         goThisSensor(Sensor.TYPE_PRESSURE, SensorPressureActivity.class, R.string.withoutPressureSensor);
+                        break;
                 }
             }
         });
