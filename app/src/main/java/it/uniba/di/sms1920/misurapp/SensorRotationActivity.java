@@ -23,7 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SensorMagneticFieldActivity extends AppCompatActivity implements SensorEventListener {
+public class SensorRotationActivity extends AppCompatActivity implements SensorEventListener {
 
     ImageView compass_img;
     int mAzimuth;
@@ -36,22 +36,22 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
     private float[] mLastMagnetometer = new float[3];
     private boolean mLastAccelerometerSet = false;
     private boolean mLastMagnetometerSet = false;
-    private TextView showgeomagneticData;
+    private TextView showRotationData;
     private Set<Detection> detections;
     private Button mBtnHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sensor_magnetic_field);
+        setContentView(R.layout.activity_sensor_rotation);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        myToolbar.setTitle(R.string.geomagneticFieldSensor);
+        myToolbar.setTitle(R.string.rotationSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
         setSupportActionBar(myToolbar);
 
-        showgeomagneticData = findViewById(R.id.geomagneticData);
+        showRotationData = findViewById(R.id.rotationData);
         detections = new HashSet<Detection>();
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -89,22 +89,22 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
             mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
         }
 
-        if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-            Detection geomagneticDetection = new Detection();
+        if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
+            Detection rotationDetection = new Detection();
 
-            geomagneticDetection.setSensorType(event.sensor.getType());
-            geomagneticDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
-            geomagneticDetection.setValues(event.values[0]);
-            geomagneticDetection.setValues(event.values[1]);
-            geomagneticDetection.setValues(event.values[2]);
+            rotationDetection.setSensorType(event.sensor.getType());
+            rotationDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+            rotationDetection.setValues(event.values[0]);
+            rotationDetection.setValues(event.values[1]);
+            rotationDetection.setValues(event.values[2]);
 
-            detections.add(geomagneticDetection);
+            detections.add(rotationDetection);
         }
 
 
 
         mAzimuth = Math.round(mAzimuth);
-        showgeomagneticData.setText(mAzimuth + "°");
+        showRotationData.setText(mAzimuth + "°");
         compass_img.setRotation(-mAzimuth);
 
     }
@@ -183,7 +183,7 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
 
     private void goHistory() {
         Intent intent = new Intent(this, HistoryActivity.class);
-        intent.putExtra(DetectionOpenHelper.SENSOR_TYPE, Sensor.TYPE_MAGNETIC_FIELD);
+        intent.putExtra(DetectionOpenHelper.SENSOR_TYPE, Sensor.TYPE_ROTATION_VECTOR);
         startActivity(intent);
     }
 

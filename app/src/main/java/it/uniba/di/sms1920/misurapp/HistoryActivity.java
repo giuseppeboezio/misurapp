@@ -39,8 +39,8 @@ public class HistoryActivity extends ListActivity {
             case Sensor.TYPE_STEP_COUNTER:
                 myToolbar.setTitle(R.string.stepCounterSensor);
                 break;
-            case Sensor.TYPE_MAGNETIC_FIELD:
-                myToolbar.setTitle(R.string.geomagneticFieldSensor);
+            case Sensor.TYPE_ROTATION_VECTOR:
+                myToolbar.setTitle(R.string.rotationSensor);
                 break;
             case Sensor.TYPE_PROXIMITY:
                 myToolbar.setTitle(R.string.proximitySensor);

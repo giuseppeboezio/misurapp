@@ -9,7 +9,7 @@
     <string name="withoutLightSensor">Sensore di Luminosita non trovato</string>
     <string name="withoutProximitySensor">Sensore di Prossimita non trovato</string>
     <string name="withoutHumiditySensor">Sensore di Umidita non trovato</string>
-    <string name="withoutGeomagneticFieldSensor">Sensore di Campo Magnetico non trovato</string>
+    <string name="withoutRotationSensor">Sensore di Rotazione non trovato</string>
     <string name="withoutAccelerometerSensor">Sensore Accelerometro non trovato</string>
     <string name="withoutStepCounterSensor">Sensore Contapassi non trovato</string>
     <string name="withoutPressureSensor">Sensore di Pressione non trovato</string>
@@ -19,7 +19,7 @@
     <string name="proximitySensor">Sensore di Prossimita</string>
     <string name="accelerometerSensor">Sensore Accelerometro</string>
     <string name="stepCounterSensor">Sensore Contapassi</string>
-    <string name="geomagneticFieldSensor">Sensore Geomagnetico</string>
+    <string name="rotationSensor">Sensore di Rotazione</string>
     <string name="pressureSensor">Srnsore di Pressione</string>
     <!--Description about using sensors -->
     <string name="lightDescription">Cambia la luminosita per oscurire gli occhiali del poliziotto</string>

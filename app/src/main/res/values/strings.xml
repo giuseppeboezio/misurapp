@@ -8,7 +8,7 @@
     <string name="withoutLightSensor">Light Sensor not found</string>
     <string name="withoutProximitySensor">Proximity Sensor not found</string>
     <string name="withoutHumiditySensor">Humidity Sensor not found</string>
-    <string name="withoutGeomagneticFieldSensor">Geomagnetic Field Sensor not found</string>
+    <string name="withoutRotationSensor">Rotation Sensor not found</string>
     <string name="withoutAccelerometerSensor">Accelerometer Sensor not found</string>
     <string name="withoutStepCounterSensor">Step Counter Sensor not found</string>
     <string name="withoutPressureSensor">Pressure Sensor not found</string>
@@ -20,7 +20,7 @@
     <string name="proximitySensor">Proximity Sensor</string>
     <string name="accelerometerSensor">Accelerometer Sensor</string>
     <string name="stepCounterSensor">Step Counter Sensor</string>
-    <string name="geomagneticFieldSensor">Geomagnetic Sensor</string>
+    <string name="rotationSensor">Rotation Sensor</string>
     <string name="pressureSensor">Pressure Sensor</string>
     <string name="temperatureSensor">Temperature Sensor</string>
 

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         R.drawable.light_main, R.drawable.proximity_main, R.drawable.rocket_with_galaxy, R.drawable.window, R.drawable.pressure_main,
                 R.drawable.temperature_main};
 
-        sensorNames = new String[] {res.getString(R.string.stepCounterSensor), res.getString(R.string.geomagneticFieldSensor),
+        sensorNames = new String[] {res.getString(R.string.stepCounterSensor), res.getString(R.string.rotationSensor),
                 res.getString(R.string.lightSensor), res.getString(R.string.proximitySensor), res.getString(R.string.accelerometerSensor), res.getString(R.string.humiditySensor), res.getString(R.string.pressureSensor),
                 res.getString(R.string.temperatureSensor)};
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         goThisSensor(Sensor.TYPE_STEP_COUNTER, SensorStepCounterActivity.class, R.string.withoutStepCounterSensor);
                         break;
                     case 1:
-                        goThisSensor(Sensor.TYPE_MAGNETIC_FIELD, SensorMagneticFieldActivity.class, R.string.withoutGeomagneticFieldSensor);
+                        goThisSensor(Sensor.TYPE_ROTATION_VECTOR, SensorRotationActivity.class, R.string.withoutRotationSensor);
                         break;
                     case 2:
                         goThisSensor(Sensor.TYPE_LIGHT, SensorLightActivity.class, R.string.withoutLightSensor);
