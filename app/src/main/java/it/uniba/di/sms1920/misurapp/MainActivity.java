@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Creating gridview to display whole set sensors
         sensorImages = new int[] {R.drawable.biker_in_the_city, R.drawable.image_geomagnetic_sensor,
-        R.drawable.policeman, R.drawable.proximity_image, R.drawable.rocket_with_galaxy};
+        R.drawable.policeman, R.drawable.proximity_image, R.drawable.rocket_with_galaxy, R.drawable.window};
 
         sensorNames = new String[] {res.getString(R.string.stepCounterSensor), res.getString(R.string.geomagneticFieldSensor),
-                res.getString(R.string.lightSensor), res.getString(R.string.proximitySensor), res.getString(R.string.accelerometerSensor)};
+                res.getString(R.string.lightSensor), res.getString(R.string.proximitySensor), res.getString(R.string.accelerometerSensor), res.getString(R.string.humiditySensor)};
 
         CustomAdapter adapter = new CustomAdapter(getApplicationContext(),sensorNames, sensorImages);
         grid = findViewById(R.id.grid);
@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         goThisSensor(Sensor.TYPE_ACCELEROMETER, SensorAccelerometerActivity.class, R.string.withoutAccelerometerSensor);
+                        break;
+                    case 5:
+                        goThisSensor(Sensor.TYPE_RELATIVE_HUMIDITY, SensorHumidityActivity.class, R.string.withoutHumiditySensor);
                 }
             }
         });

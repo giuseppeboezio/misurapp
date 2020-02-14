@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".HistoryActivity"></activity>
+        <activity
+            android:name=".SensorHumidityActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".SensorStepCounterActivity"
             android:screenOrientation="landscape"/>
         <activity
@@ -21,13 +24,9 @@
         <activity
             android:name=".SensorProximityActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".SensorHumidityActivity" />
         <activity
             android:name=".SensorLightActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PositionActivity" />
-        <activity android:name=".MotionActivity" />
-        <activity android:name=".EnvironmentActivity" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashActivity"
