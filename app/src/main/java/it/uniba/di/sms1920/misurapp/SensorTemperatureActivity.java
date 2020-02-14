@@ -63,7 +63,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
         float ambientTemperature = event.values[0];
 
         fromX = toX;
-        fromY = toY;
+        fromY = 0;
 
         toY = (float) -1.1 * ambientTemperature;
 
