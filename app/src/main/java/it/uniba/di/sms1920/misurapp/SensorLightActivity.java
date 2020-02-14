@@ -82,7 +82,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     public final void onSensorChanged(SensorEvent event) {
         float lux = event.values[0];
 
-        showLightData.setText(String.valueOf(lux) + "  LX");
+        showLightData.setText(String.valueOf(lux) + "  lx");
         //Managing sensor change for persistance
 
         Detection lightDetection = new Detection();
