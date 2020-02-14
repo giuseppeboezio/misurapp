@@ -27,8 +27,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
     private Set<Detection> detections;
     private SensorManager mSensorManager;
     private Sensor mSensorTemperature;
-    private float fromX, fromY, toX, toY;
-    private ScaleAnimation scaleAnimation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        myToolbar.setTitle(R.string.proximitySensor);
+        myToolbar.setTitle(R.string.temperatureSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
         setSupportActionBar(myToolbar);
 
@@ -48,10 +47,6 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
 
-        toX = 1;
-        toY = 1;
-        fromX = toX;
-        fromY = 1;
 
 
     }
@@ -66,17 +61,33 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
        float ambientTemperature = event.values[0];
 
 
-        toY = (float) -1.1 * ambientTemperature;
+       if(ambientTemperature < -30) {
+           temperature.setImageResource(R.drawable.cold5);
+       } else if (ambientTemperature >= -30 && ambientTemperature < -20) {
+           temperature.setImageResource(R.drawable.cold4);
+       } else if (ambientTemperature >= -20 && ambientTemperature < -10) {
+           temperature.setImageResource(R.drawable.cold3);
+       } else if (ambientTemperature >= -10 && ambientTemperature < 0) {
+           temperature.setImageResource(R.drawable.cold2);
+       } else if (ambientTemperature >= 0 && ambientTemperature < 10) {
+           temperature.setImageResource(R.drawable.cold1);
+       } else if (ambientTemperature >= 10 && ambientTemperature < 20) {
+           temperature.setImageResource(R.drawable.red1);
+       } else if (ambientTemperature >= 20 && ambientTemperature < 30) {
+           temperature.setImageResource(R.drawable.red2);
+       } else if (ambientTemperature >= 30 && ambientTemperature < 40) {
+           temperature.setImageResource(R.drawable.red3);
+       } else if (ambientTemperature >= 40 && ambientTemperature < 50) {
+           temperature.setImageResource(R.drawable.red4);
+       } else {
+           temperature.setImageResource(R.drawable.red5);
+       }
 
 
-        scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
-        scaleAnimation.setDuration(5000);
-        scaleAnimation.setFillAfter(true);
-        scaleAnimation.setInterpolator(new LinearInterpolator());
 
-        temperature.startAnimation(scaleAnimation);
 
-       showTemperatureData.setText(String.valueOf(ambientTemperature) + "  °C");
+
+        showTemperatureData.setText(String.valueOf(ambientTemperature) + "  °C");
 
         Detection temperatureDetection = new Detection();
 
