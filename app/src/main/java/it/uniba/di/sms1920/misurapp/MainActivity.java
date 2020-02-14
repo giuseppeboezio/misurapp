@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         //Creating gridview to display whole set sensors
         sensorImages = new int[] {R.drawable.biker_in_the_city, R.drawable.image_geomagnetic_sensor,
         R.drawable.policeman, R.drawable.proximity_image, R.drawable.rocket_with_galaxy, R.drawable.window, R.drawable.pressure_background,
-                R.drawable.thermometer};
+                R.drawable.table};
 
         sensorNames = new String[] {res.getString(R.string.stepCounterSensor), res.getString(R.string.geomagneticFieldSensor),
                 res.getString(R.string.lightSensor), res.getString(R.string.proximitySensor), res.getString(R.string.accelerometerSensor), res.getString(R.string.humiditySensor), res.getString(R.string.pressureSensor),
