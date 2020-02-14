@@ -18,6 +18,7 @@
     <string name="accelerometerSensor">Accelerometer Sensor</string>
     <string name="stepCounterSensor">Step Counter Sensor</string>
     <string name="geomagneticFieldSensor">Geomagnetic Sensor</string>
+    <string name="pressureSensor">Pressure Sensor</string>
     <!--Description about using sensors -->
     <string name="lightDescription">Change the lightness to darken policeman\'s sunglasses</string>
     <string name="accelerometerDescription">Shake your device vertically to launch the rocket, horizontally to change the rotation</string>

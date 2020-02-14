@@ -13,6 +13,9 @@
         <activity
             android:name=".SensorHumidityActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".SensorPressureActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".SensorStepCounterActivity"
             android:screenOrientation="landscape"/>
         <activity
