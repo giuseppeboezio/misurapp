@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,8 +13,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,11 +37,21 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
 
     private TextView mShowDetection;
     private Set<Detection> detections;
+    private Button mBtnHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_step_counter);
+
+        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+
+        mBtnHistory.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goHistory();
+            }
+        });
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
@@ -120,6 +133,12 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
         String message = getResources().getQuantityString(R.plurals.saveMessage, quantity, quantity);
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         detections.clear();
+    }
+
+    private void goHistory() {
+        Intent intent = new Intent(this, HistoryActivity.class);
+        intent.putExtra(DetectionOpenHelper.SENSOR_TYPE, Sensor.TYPE_STEP_COUNTER);
+        startActivity(intent);
     }
 
     @Override

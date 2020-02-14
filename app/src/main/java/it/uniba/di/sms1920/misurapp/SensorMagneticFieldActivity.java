@@ -2,6 +2,7 @@ package it.uniba.di.sms1920.misurapp;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -9,6 +10,8 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +38,7 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
     private boolean mLastMagnetometerSet = false;
     private TextView showgeomagneticData;
     private Set<Detection> detections;
+    private Button mBtnHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,15 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
             SensorManager.getRotationMatrixFromVector(rMat, event.values);
             mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
         }
+
+        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+
+        mBtnHistory.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goHistory();
+            }
+        });
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             System.arraycopy(event.values, 0, mLastAccelerometer, 0, event.values.length);
@@ -160,6 +173,12 @@ public class SensorMagneticFieldActivity extends AppCompatActivity implements Se
             mSensorManager.unregisterListener(this, mAccelerometer);
             mSensorManager.unregisterListener(this, mMagnetometer);
         }
+    }
+
+    private void goHistory() {
+        Intent intent = new Intent(this, HistoryActivity.class);
+        intent.putExtra(DetectionOpenHelper.SENSOR_TYPE, Sensor.TYPE_MAGNETIC_FIELD);
+        startActivity(intent);
     }
 
     @Override

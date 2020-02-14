@@ -2,6 +2,7 @@ package it.uniba.di.sms1920.misurapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -10,9 +11,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,11 +38,21 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
     private float fromX, fromY, toX, toY;
     private Set<Detection> detections;
     private TextView showProximityData;
+    private Button mBtnHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_proximity);
+
+        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+
+        mBtnHistory.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goHistory();
+            }
+        });
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
@@ -131,6 +144,12 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
         String message = getResources().getQuantityString(R.plurals.saveMessage, quantity, quantity);
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         detections.clear();
+    }
+
+    private void goHistory() {
+        Intent intent = new Intent(this, HistoryActivity.class);
+        intent.putExtra(DetectionOpenHelper.SENSOR_TYPE, Sensor.TYPE_PROXIMITY);
+        startActivity(intent);
     }
 
     @Override
