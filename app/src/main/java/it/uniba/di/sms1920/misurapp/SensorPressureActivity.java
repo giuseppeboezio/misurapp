@@ -32,7 +32,7 @@ public class SensorPressureActivity extends AppCompatActivity implements SensorE
     private ImageView baloon, boom;
     private ScaleAnimation scaleAnimation;
     private Button mBtnHistory;
-    private float fromX, fromY, toX, toY, pivotX, pivotY;
+    private float fromX, fromY, toX, toY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +77,6 @@ public class SensorPressureActivity extends AppCompatActivity implements SensorE
 
         fromX = toX;
         fromY = toY;
-        pivotX = 0;
-        pivotY = 0;
 
         if (pressure >= 900){
 
@@ -86,7 +84,8 @@ public class SensorPressureActivity extends AppCompatActivity implements SensorE
             baloon.setVisibility(View.INVISIBLE);
             boom.setVisibility(View.VISIBLE);
         }
-        else if (pressure >= 0 && pressure < 100) {
+
+        if (pressure >= 0 && pressure < 100) {
             toX = (float) 1.1;
             toY = (float) 1.1;
             boom.setVisibility(View.INVISIBLE);
@@ -141,7 +140,7 @@ public class SensorPressureActivity extends AppCompatActivity implements SensorE
         }
 
 
-        scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY, pivotX, pivotY);
+        scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
         scaleAnimation.setDuration(1000);
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setInterpolator(new LinearInterpolator());
