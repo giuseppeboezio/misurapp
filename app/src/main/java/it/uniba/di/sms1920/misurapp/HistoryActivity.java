@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.hardware.Sensor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.SimpleCursorAdapter;
 
@@ -25,6 +26,8 @@ public class HistoryActivity extends ListActivity {
 
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+
+        Log.i("SENSOR_TYPE", String.valueOf(sensorType));
 
         switch(sensorType) {
             case Sensor.TYPE_ACCELEROMETER:
@@ -49,9 +52,9 @@ public class HistoryActivity extends ListActivity {
                 myToolbar.setTitle(R.string.pressureSensor);
                 break;
             case Sensor.TYPE_AMBIENT_TEMPERATURE:
-                myToolbar.setTitle(R.string.pressureSensor);
+                myToolbar.setTitle(R.string.temperatureSensor);
+                break;
         }
-        myToolbar.setTitle(R.string.lightSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
         setActionBar(myToolbar);
 
@@ -62,7 +65,10 @@ public class HistoryActivity extends ListActivity {
         switch(sensorType){
             case Sensor.TYPE_LIGHT:
             case Sensor.TYPE_PROXIMITY:
-            case Sensor.TYPE_STEP_COUNTER: //Scalar measures (light, proximity and step counter)
+            case Sensor.TYPE_STEP_COUNTER:
+            case Sensor.TYPE_RELATIVE_HUMIDITY:
+            case Sensor.TYPE_PRESSURE:
+            case Sensor.TYPE_AMBIENT_TEMPERATURE:
                 mAdapter = new SimpleCursorAdapter(this, R.layout.detection_row_scalar, cursor,
                         new String[]{DetectionOpenHelper.ID, DetectionOpenHelper.DATETIME, DetectionOpenHelper.VALUE1},
                         new int[] {R.id.id, R.id.datetime, R.id.value1}, 0);

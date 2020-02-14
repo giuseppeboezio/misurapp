@@ -55,7 +55,7 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
 
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        myToolbar.setTitle(R.string.lightSensor);
+        myToolbar.setTitle(R.string.humiditySensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
         setSupportActionBar(myToolbar);
 
@@ -223,7 +223,7 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
 
     private void goHistory() {
         Intent intent = new Intent(this, HistoryActivity.class);
-        intent.putExtra(DetectionOpenHelper.SENSOR_TYPE, Sensor.TYPE_LIGHT);
+        intent.putExtra(DetectionOpenHelper.SENSOR_TYPE, Sensor.TYPE_RELATIVE_HUMIDITY);
         startActivity(intent);
     }
 }
