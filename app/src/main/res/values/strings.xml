@@ -11,6 +11,7 @@
     <string name="withoutGeomagneticFieldSensor">Geomagnetic Field Sensor not found</string>
     <string name="withoutAccelerometerSensor">Accelerometer Sensor not found</string>
     <string name="withoutStepCounterSensor">Step Counter Sensor not found</string>
+    <string name="withoutPressureSensor">Pressure Sensor not found</string>
     <!--Sensors name -->
     <string name="lightSensor">Light Sensor</string>
     <string name="humiditySensor">Humidity Sensor</string>

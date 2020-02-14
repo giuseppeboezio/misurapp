@@ -12,6 +12,7 @@
     <string name="withoutGeomagneticFieldSensor">Sensore di Campo Magnetico non trovato</string>
     <string name="withoutAccelerometerSensor">Sensore Accelerometro non trovato</string>
     <string name="withoutStepCounterSensor">Sensore contapassi non trovato</string>
+    <string name="withoutPressureSensor">Sensore di Pressione non trovato</string>
     <!--Sensors name -->
     <string name="lightSensor">Sensore di Luminosita</string>
     <string name="humiditySensor">Sensore di Umidita</string>
