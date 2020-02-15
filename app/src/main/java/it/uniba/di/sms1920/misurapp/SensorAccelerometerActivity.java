@@ -40,9 +40,9 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-        mGalaxy = (ConstraintLayout) findViewById(R.id.galaxy);
+  /*      mGalaxy = (ConstraintLayout) findViewById(R.id.galaxy);
         mGalaxy.setBackgroundResource(R.drawable.rocket_animation);
-        mLeavingRocket = (AnimationDrawable) mGalaxy.getBackground();
+        mLeavingRocket = (AnimationDrawable) mGalaxy.getBackground(); */
 
 
     }
