@@ -23,7 +23,7 @@
             android:screenOrientation="landscape"/>
         <activity
             android:name=".SensorAccelerometerActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".SensorRotationActivity"
             android:screenOrientation="portrait" />
