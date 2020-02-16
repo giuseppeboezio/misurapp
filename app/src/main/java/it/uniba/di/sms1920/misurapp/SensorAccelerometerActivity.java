@@ -82,7 +82,7 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
             toDegree = toDegree + acceleration * 30f;
             RotateAnimation rotateAnimation = new RotateAnimation(fromDegree, toDegree,  Animation.RELATIVE_TO_SELF,
                     0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-            rotateAnimation.setDuration(5000);
+            rotateAnimation.setDuration(7000);
             rotateAnimation.setInterpolator(new DecelerateInterpolator());
             rotateAnimation.setFillAfter(true);
 
