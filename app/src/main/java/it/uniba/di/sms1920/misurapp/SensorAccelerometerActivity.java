@@ -19,6 +19,8 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnticipateInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
@@ -66,7 +68,8 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        fromDegree = 0;
+
+        //fromDegree = 0;
         toDegree = 0;
 
     }
@@ -82,19 +85,18 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
         float y = event.values[1];
         float z = event.values[2];
 
-        float acceleration = x*x+y*y+z*z;
+        float acceleration = Math.abs(x+y+z);
 
-        if(acceleration >= 1000) {
+        if(y < -3 && acceleration >= 20) {
             fromDegree = toDegree;
-            toDegree = (toDegree + acceleration * 0.1f);
-            Log.i("hola", String.valueOf(acceleration));
-            RotateAnimation rotateAnimation = new RotateAnimation(fromDegree, toDegree,  Animation.RELATIVE_TO_SELF, 0.5f,
-                    Animation.RELATIVE_TO_SELF, 0.5f);
-            rotateAnimation.setDuration(2000);
-            rotateAnimation.setInterpolator(new AccelerateInterpolator());
+            toDegree = acceleration * 50f; //(toDegree + acceleration * 0.1f);
+            RotateAnimation rotateAnimation = new RotateAnimation(fromDegree, toDegree,  Animation.RELATIVE_TO_SELF,
+                    0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            rotateAnimation.setDuration(5000);
+            rotateAnimation.setInterpolator(new DecelerateInterpolator());
             rotateAnimation.setFillAfter(true);
 
-            wheel.startAnimation(rotateAnimation);
+           wheel.startAnimation(rotateAnimation);
 
         }
 
