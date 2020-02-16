@@ -28,9 +28,6 @@ import java.util.Set;
 
 public class SensorProximityActivity extends AppCompatActivity implements SensorEventListener {
 
-    private static final float PIVOT_X = (float) 0.5;
-    private static final float PIVOT_Y = (float) 0.5;
-
     private SensorManager mSensorManager;
     private Sensor mSensorProximity;
     private ImageView highFiveHand;
@@ -45,7 +42,7 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_proximity);
 
-        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+        mBtnHistory = findViewById(R.id.btnHistory);
 
         mBtnHistory.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -54,13 +51,13 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
             }
         });
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         myToolbar.setTitle(R.string.proximitySensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
         setSupportActionBar(myToolbar);
 
-        highFiveHand = (ImageView) findViewById(R.id.img_hand);
+        highFiveHand = findViewById(R.id.img_hand);
 
         showProximityData = findViewById(R.id.proximityData);
         detections = new HashSet<Detection>();
@@ -107,7 +104,7 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
 
         highFiveHand.startAnimation(scaleAnimation);
 
-        showProximityData.setText(String.valueOf(distance) + "  cm");
+        showProximityData.setText(distance + "  cm");
 
         Detection proximityDetection = new Detection();
 

@@ -1,7 +1,6 @@
 package it.uniba.di.sms1920.misurapp;
 
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -15,11 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,14 +24,9 @@ public class SensorRotationActivity extends AppCompatActivity implements SensorE
     ImageView compass_img;
     int mAzimuth;
     private SensorManager mSensorManager;
-    private Sensor mRotationV, mAccelerometer, mMagnetometer;
-    boolean haveSensor = false, haveSensor2 = false;
+    private Sensor mRotationV;
     float[] rMat = new float[9];
     float[] orientation = new float[3];
-    private float[] mLastAccelerometer = new float[3];
-    private float[] mLastMagnetometer = new float[3];
-    private boolean mLastAccelerometerSet = false;
-    private boolean mLastMagnetometerSet = false;
     private TextView showRotationData;
     private Set<Detection> detections;
     private Button mBtnHistory;
@@ -45,7 +36,16 @@ public class SensorRotationActivity extends AppCompatActivity implements SensorE
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_rotation);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        mBtnHistory = findViewById(R.id.btnHistory);
+
+        mBtnHistory.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goHistory();
+            }
+        });
+
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         myToolbar.setTitle(R.string.rotationSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
@@ -55,57 +55,32 @@ public class SensorRotationActivity extends AppCompatActivity implements SensorE
         detections = new HashSet<Detection>();
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        compass_img = (ImageView) findViewById(R.id.boat);
+        mRotationV = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
-        start();
+        compass_img = findViewById(R.id.boat);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
-            SensorManager.getRotationMatrixFromVector(rMat, event.values);
-            mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
-        }
 
-        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+        SensorManager.getRotationMatrixFromVector(rMat, event.values);
+        mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
 
-        mBtnHistory.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                goHistory();
-            }
-        });
-
-        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            System.arraycopy(event.values, 0, mLastAccelerometer, 0, event.values.length);
-            mLastAccelerometerSet = true;
-        } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-            System.arraycopy(event.values, 0, mLastMagnetometer, 0, event.values.length);
-            mLastMagnetometerSet = true;
-        }
-        if (mLastAccelerometerSet && mLastMagnetometerSet) {
-            SensorManager.getRotationMatrix(rMat, null, mLastAccelerometer, mLastMagnetometer);
-            SensorManager.getOrientation(rMat, orientation);
-            mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
-        }
-
-        if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
-            Detection rotationDetection = new Detection();
-
-            rotationDetection.setSensorType(event.sensor.getType());
-            rotationDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
-            rotationDetection.setValues(event.values[0]);
-            rotationDetection.setValues(event.values[1]);
-            rotationDetection.setValues(event.values[2]);
-
-            detections.add(rotationDetection);
-        }
-
-
+        SensorManager.getOrientation(rMat, orientation);
+        mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
 
         mAzimuth = Math.round(mAzimuth);
         showRotationData.setText(mAzimuth + "°");
         compass_img.setRotation(-mAzimuth);
+
+        Detection rotationDetection = new Detection();
+        detections.add(rotationDetection);
+
+        rotationDetection.setSensorType(event.sensor.getType());
+        rotationDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        rotationDetection.setValues(event.values[0]);
+        rotationDetection.setValues(event.values[1]);
+        rotationDetection.setValues(event.values[2]);
 
     }
 
@@ -141,45 +116,6 @@ public class SensorRotationActivity extends AppCompatActivity implements SensorE
         detections.clear();
     }
 
-    public void start() {
-        if (mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR) == null) {
-            if ((mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) == null) || (mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) == null)) {
-                noSensorsAlert();
-            }
-            else {
-                mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-                mMagnetometer = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-                haveSensor = mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
-                haveSensor2 = mSensorManager.registerListener(this, mMagnetometer, SensorManager.SENSOR_DELAY_UI);
-            }
-        }
-        else{
-            mRotationV = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
-            haveSensor = mSensorManager.registerListener(this, mRotationV, SensorManager.SENSOR_DELAY_UI);
-        }
-    }
-
-    public void noSensorsAlert(){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setMessage("Your device doesn't support the Compass.")
-                .setCancelable(false)
-                .setNegativeButton("Close",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                    }
-                });
-        alertDialog.show();
-    }
-
-    public void stop() {
-        if (haveSensor) {
-            mSensorManager.unregisterListener(this, mRotationV);
-        }
-        else {
-            mSensorManager.unregisterListener(this, mAccelerometer);
-            mSensorManager.unregisterListener(this, mMagnetometer);
-        }
-    }
 
     private void goHistory() {
         Intent intent = new Intent(this, HistoryActivity.class);
@@ -190,13 +126,13 @@ public class SensorRotationActivity extends AppCompatActivity implements SensorE
     @Override
     protected void onPause() {
         super.onPause();
-        stop();
+        mSensorManager.unregisterListener(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        start();
+        mSensorManager.registerListener(this, mRotationV, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
 }
