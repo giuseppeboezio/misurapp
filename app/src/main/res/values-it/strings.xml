@@ -20,7 +20,7 @@
     <string name="accelerometerSensor">Sensore Accelerometro</string>
     <string name="stepCounterSensor">Sensore Contapassi</string>
     <string name="rotationSensor">Sensore di Rotazione</string>
-    <string name="pressureSensor">Srnsore di Pressione</string>
+    <string name="pressureSensor">Sensore di Pressione</string>
     <!--Description about using sensors -->
     <string name="lightDescription">Cambia la luminosita per oscurire gli occhiali del poliziotto</string>
     <string name="accelerometerDescription">Muovi il dispositivo verticalmente per far partire il razzo, orizzontalmente per inclinarlo</string>
