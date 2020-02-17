@@ -1,8 +1,5 @@
 package it.uniba.di.sms1920.misurapp;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 
 import java.text.DateFormat;
 import java.text.ParseException;

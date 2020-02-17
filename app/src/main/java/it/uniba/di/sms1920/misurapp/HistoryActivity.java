@@ -76,7 +76,8 @@ public class HistoryActivity extends ListActivity {
             default:
                 mAdapter = new SimpleCursorAdapter(this, R.layout.detection_row_vectorial, cursor,
                            new String[]{DetectionOpenHelper.ID, DetectionOpenHelper.DATETIME, DetectionOpenHelper.VALUE1,
-                                   DetectionOpenHelper.VALUE2, DetectionOpenHelper.VALUE3}, new int[] {R.id.id, R.id.datetime, R.id.value1,
+                                   DetectionOpenHelper.VALUE2, DetectionOpenHelper.VALUE3},
+                            new int[] {R.id.id, R.id.datetime, R.id.value1,
                         R.id.value2, R.id.value3}, 0);
 
         }

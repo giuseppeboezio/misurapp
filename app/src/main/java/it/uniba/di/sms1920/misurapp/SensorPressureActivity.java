@@ -80,11 +80,9 @@ public class SensorPressureActivity extends AppCompatActivity implements SensorE
 
         if (pressure >= 900){
             //show boom image
-            baloon.setVisibility(View.INVISIBLE);
             boom.setVisibility(View.VISIBLE);
         }else{
             boom.setVisibility(View.INVISIBLE);
-            baloon.setVisibility(View.VISIBLE);
         }
 
         if (pressure >= 0 && pressure < 100) {
