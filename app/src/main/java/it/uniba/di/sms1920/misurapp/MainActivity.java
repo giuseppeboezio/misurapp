@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         myToolbar.setLogo(R.mipmap.ic_launcher_round);
         myToolbar.setTitle(R.string.app_name);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));

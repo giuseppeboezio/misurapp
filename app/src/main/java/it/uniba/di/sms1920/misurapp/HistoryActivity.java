@@ -24,7 +24,7 @@ public class HistoryActivity extends ListActivity {
         Intent intent = getIntent();
         int sensorType = intent.getIntExtra(DetectionOpenHelper.SENSOR_TYPE, 0);
 
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar = findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
 
         Log.i("SENSOR_TYPE", String.valueOf(sensorType));

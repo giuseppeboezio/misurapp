@@ -41,7 +41,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_light);
 
-        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+        mBtnHistory = findViewById(R.id.btnHistory);
 
         mBtnHistory.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -50,7 +50,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
             }
         });
 
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar = findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         myToolbar.setTitle(R.string.lightSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
@@ -64,7 +64,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
-        mSunglasses = (ImageView) findViewById(R.id.imageSunglasses);
+        mSunglasses = findViewById(R.id.imageSunglasses);
         toAlpha = (float) 0.3;
 
     }

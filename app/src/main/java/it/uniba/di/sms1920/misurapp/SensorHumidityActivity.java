@@ -53,7 +53,7 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_humidity);
 
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar = findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         myToolbar.setTitle(R.string.humiditySensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
@@ -61,8 +61,8 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        showHumidityData = (TextView) findViewById(R.id.humidityData);
-        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+        showHumidityData = findViewById(R.id.humidityData);
+        mBtnHistory = findViewById(R.id.btnHistory);
         mBtnHistory.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -76,20 +76,20 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
         detections = new HashSet<Detection>();
 
         //Getting drops references
-        mDrop1 = (ImageView) findViewById(R.id.drop1);
-        mDrop2 = (ImageView) findViewById(R.id.drop2);
-        mDrop3 = (ImageView) findViewById(R.id.drop3);
-        mDrop4 = (ImageView) findViewById(R.id.drop4);
-        mDrop5 = (ImageView) findViewById(R.id.drop5);
-        mDrop6 = (ImageView) findViewById(R.id.drop6);
-        mDrop7 = (ImageView) findViewById(R.id.drop7);
-        mDrop8 = (ImageView) findViewById(R.id.drop8);
-        mDrop9 = (ImageView) findViewById(R.id.drop9);
-        mDrop10 = (ImageView) findViewById(R.id.drop10);
-        mDrop11 = (ImageView) findViewById(R.id.drop11);
-        mDrop12 = (ImageView) findViewById(R.id.drop12);
-        mDrop13 = (ImageView) findViewById(R.id.drop13);
-        mDrop14 = (ImageView) findViewById(R.id.drop14);
+        mDrop1 = findViewById(R.id.drop1);
+        mDrop2 = findViewById(R.id.drop2);
+        mDrop3 = findViewById(R.id.drop3);
+        mDrop4 = findViewById(R.id.drop4);
+        mDrop5 = findViewById(R.id.drop5);
+        mDrop6 = findViewById(R.id.drop6);
+        mDrop7 = findViewById(R.id.drop7);
+        mDrop8 = findViewById(R.id.drop8);
+        mDrop9 = findViewById(R.id.drop9);
+        mDrop10 = findViewById(R.id.drop10);
+        mDrop11 = findViewById(R.id.drop11);
+        mDrop12 = findViewById(R.id.drop12);
+        mDrop13 = findViewById(R.id.drop13);
+        mDrop14 = findViewById(R.id.drop14);
 
 
 

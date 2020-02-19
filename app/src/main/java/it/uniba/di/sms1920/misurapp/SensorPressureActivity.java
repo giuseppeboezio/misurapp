@@ -39,7 +39,7 @@ public class SensorPressureActivity extends AppCompatActivity implements SensorE
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_pressure);
 
-        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+        mBtnHistory = findViewById(R.id.btnHistory);
 
         mBtnHistory.setOnClickListener(new Button.OnClickListener(){
             @Override

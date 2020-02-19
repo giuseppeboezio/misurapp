@@ -43,7 +43,7 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_step_counter);
 
-        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+        mBtnHistory = findViewById(R.id.btnHistory);
 
         mBtnHistory.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -52,19 +52,19 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
             }
         });
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         myToolbar.setTitle(R.string.stepCounterSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
         setSupportActionBar(myToolbar);
 
-        mShowDetection = (TextView) findViewById(R.id.showSteps);
+        mShowDetection = findViewById(R.id.showSteps);
 
         detections = new HashSet<Detection>();
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        girlOnBike = (ImageView) findViewById(R.id.girl);
+        girlOnBike = findViewById(R.id.girl);
 
 
         fromX = 0;

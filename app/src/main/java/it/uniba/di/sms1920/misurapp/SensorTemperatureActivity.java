@@ -36,7 +36,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_temperature);
 
-        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+        mBtnHistory = findViewById(R.id.btnHistory);
         mBtnHistory.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -44,7 +44,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
             }
         });
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         myToolbar.setTitle(R.string.temperatureSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
@@ -92,9 +92,6 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
        } else {
            temperature.setImageResource(R.drawable.red5);
        }
-
-
-
 
 
         showTemperatureData.setText(String.valueOf(ambientTemperature) + "  °C");

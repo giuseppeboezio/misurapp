@@ -37,7 +37,7 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_accelerometer);
 
-        mBtnHistory = (Button) findViewById(R.id.btnHistory);
+        mBtnHistory = findViewById(R.id.btnHistory);
 
         mBtnHistory.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -46,7 +46,7 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
             }
         });
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         myToolbar.setTitle(R.string.accelerometerSensor);
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorOnPrimary));
@@ -90,8 +90,8 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
 
         }
 
-        showAccelerometerData.setText("X: " + x + "  m/s2" +
-                         "\n" + "Y: " +  y + "  m/s2" + "\n" + "Z: " +  z + "  m/s2");
+        showAccelerometerData.setText("X: " + x + "  m/s^2" +
+                         "\n" + "Y: " +  y + "  m/s^2" + "\n" + "Z: " +  z + "  m/s^2");
 
         Detection accelerometerDetection = new Detection();
 
