@@ -24,12 +24,6 @@
     <string name="pressureSensor">Pressure Sensor</string>
     <string name="temperatureSensor">Temperature Sensor</string>
 
-    <!--Description about using sensors -->
-    <string name="lightDescription">Change the lightness to darken policeman\'s sunglasses</string>
-    <string name="accelerometerDescription">Shake your device vertically to launch the rocket, horizontally to change the rotation</string>
-    <string name="geomagneticDescription">Use your device to find North-Pole on your yatch</string>
-    <string name="proximityDescription">Move your hand near the device to give the five</string>
-    <string name="stepCounterDescription">Walk to make the biker move along the street</string>
     <string name="showHistory">Show History</string>
     <plurals name="saveMessage">
         <item quantity="one">%d Detection saved</item>
@@ -40,4 +34,6 @@
         <item quantity="other">%d steps</item>
     </plurals>
 
+    <string name="date">date</string>
+    <string name="time">at time</string>
 </resources>

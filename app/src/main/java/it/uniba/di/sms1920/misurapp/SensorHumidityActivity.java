@@ -110,7 +110,7 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
         Detection humidityDetection = new Detection();
 
         humidityDetection.setSensorType(event.sensor.getType());
-        humidityDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        humidityDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp, this));
         humidityDetection.setValues(event.values[0]);
 
         detections.add(humidityDetection);

@@ -21,12 +21,7 @@
     <string name="stepCounterSensor">Sensore Contapassi</string>
     <string name="rotationSensor">Sensore di Rotazione</string>
     <string name="pressureSensor">Sensore di Pressione</string>
-    <!--Description about using sensors -->
-    <string name="lightDescription">Cambia la luminosita per oscurire gli occhiali del poliziotto</string>
-    <string name="accelerometerDescription">Muovi il dispositivo verticalmente per far partire il razzo, orizzontalmente per inclinarlo</string>
-    <string name="geomagneticDescription">Usa il dispositivo per cercare il Polo-Nord a bordo dello yatch</string>
-    <string name="proximityDescription">Avvicina la mano per battere il cinque</string>
-    <string name="stepCounterDescription">Cammina per far muovere la ciclista lungo la strada</string>
+
     <string name="showHistory">Mostra Storico</string>
     <plurals name="saveMessage">
         <item quantity="one">%d Rilevazione salvata</item>
@@ -38,5 +33,8 @@
     </plurals>
     <string name="withoutTemperatureSensor">Sensore di Temperatura non trovato</string>
     <string name="temperatureSensor">Sensore di Temperatura</string>
+
+    <string name="date">data</string>
+    <string name="time">alle ore</string>
 
 </resources>

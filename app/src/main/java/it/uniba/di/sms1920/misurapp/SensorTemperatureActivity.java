@@ -99,7 +99,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
         Detection temperatureDetection = new Detection();
 
         temperatureDetection.setSensorType(event.sensor.getType());
-        temperatureDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        temperatureDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp, this));
         temperatureDetection.setValues(event.values[0]);
 
         detections.add(temperatureDetection);

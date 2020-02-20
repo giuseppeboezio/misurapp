@@ -84,7 +84,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
         Detection lightDetection = new Detection();
 
         lightDetection.setSensorType(event.sensor.getType());
-        lightDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        lightDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp, this));
         lightDetection.setValues(event.values[0]);
 
         detections.add(lightDetection);

@@ -1,6 +1,9 @@
 package it.uniba.di.sms1920.misurapp;
 
 
+import android.content.Context;
+import android.util.Log;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,10 +44,11 @@ public class Detection {
         return values[index];
     }
 
-    public static String getFormattedDatetime(long timestamp) {
+    public static String getFormattedDatetime(long timestamp, Context context) {
         String result ;
 
         Duration duration = Duration.ofNanos(timestamp);
+        Log.d("ISO", duration.toString());
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
         String durationString = duration.toString();
         Date date = new Date();
@@ -54,7 +58,16 @@ public class Detection {
             e.printStackTrace();
         }
 
-        result = date.toString();
+        String dateFormatted = date.toString();
+        Log.i("DATE", dateFormatted);
+
+        String day = dateFormatted.substring(8, 10);
+        String month = dateFormatted.substring(4, 7);
+        String year = dateFormatted.substring(24, 28);
+        String time = dateFormatted.substring(11, 19);
+        result = context.getString(R.string.date) + " " + day + " " + month + " " + year + " " + context.getString(R.string.time)
+                + " " + time;
+
         return result;
     }
 

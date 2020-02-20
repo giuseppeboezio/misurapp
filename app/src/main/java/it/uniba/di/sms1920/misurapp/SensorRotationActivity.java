@@ -77,7 +77,7 @@ public class SensorRotationActivity extends AppCompatActivity implements SensorE
         detections.add(rotationDetection);
 
         rotationDetection.setSensorType(event.sensor.getType());
-        rotationDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        rotationDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp, this));
         rotationDetection.setValues(event.values);
 
     }

@@ -96,7 +96,7 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
         Detection accelerometerDetection = new Detection();
 
         accelerometerDetection.setSensorType(event.sensor.getType());
-        accelerometerDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        accelerometerDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp, this));
         accelerometerDetection.setValues(event.values);
 
         detections.add(accelerometerDetection);

@@ -88,7 +88,7 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
         Detection stepsDetection = new Detection();
 
         stepsDetection.setSensorType(event.sensor.getType());
-        stepsDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        stepsDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp, this));
         stepsDetection.setValues(event.values[0]);
 
         detections.add(stepsDetection);

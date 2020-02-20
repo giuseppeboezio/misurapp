@@ -142,7 +142,7 @@ public class SensorPressureActivity extends AppCompatActivity implements SensorE
         Detection proximityDetection = new Detection();
 
         proximityDetection.setSensorType(event.sensor.getType());
-        proximityDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp));
+        proximityDetection.setDateTimeDetection(Detection.getFormattedDatetime(event.timestamp, this));
         proximityDetection.setValues(event.values[0]);
 
         detections.add(proximityDetection);
