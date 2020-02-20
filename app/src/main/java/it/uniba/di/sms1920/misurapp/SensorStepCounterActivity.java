@@ -28,6 +28,7 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
     private final float Y = 0.0f;
 
     private static final int ADDITIONAL_FACTOR = 30;
+    private static final int DURATION = 300;
     private SensorManager mSensorManager;
     private Sensor mSensorStepCounter;
     private ImageView girlOnBike;
@@ -100,7 +101,7 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
 
         TranslateAnimation animation1 = new TranslateAnimation(fromX, toX,
                     Y, Y);
-        animation1.setDuration(300);
+        animation1.setDuration(DURATION);
         animation1.setFillAfter(true);
         animation1.setInterpolator(new LinearInterpolator());
 
