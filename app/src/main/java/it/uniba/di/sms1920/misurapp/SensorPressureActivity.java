@@ -25,6 +25,9 @@ import java.util.Set;
 
 public class SensorPressureActivity extends AppCompatActivity implements SensorEventListener {
 
+    private static final int DURATION = 1000;
+    private static final int UNITY = 1;
+    private static final int MAX_BALOON_PRESSURE = 1000;
     private Set<Detection> detections;
     private TextView showPressureData;
     private SensorManager mSensorManager;
@@ -78,66 +81,24 @@ public class SensorPressureActivity extends AppCompatActivity implements SensorE
         fromX = toX;
         fromY = toY;
 
-        if (pressure >= 900){
+        toX = pressure / MAX_BALOON_PRESSURE + UNITY;
+        toY = pressure / MAX_BALOON_PRESSURE + UNITY;
+
+        if (pressure >= MAX_BALOON_PRESSURE){
             //show boom image
             boom.setVisibility(View.VISIBLE);
         }else{
             boom.setVisibility(View.INVISIBLE);
         }
 
-        if (pressure >= 0 && pressure < 100) {
-            toX = (float) 1.1;
-            toY = (float) 1.1;
-        }
-
-        else if (pressure >= 100 && pressure < 200) {
-            toX = (float) 1.2;
-            toY = (float) 1.2;
-        }
-
-        else if (pressure >= 200 && pressure < 300) {
-            toX = (float) 1.3;
-            toY = (float) 1.3;
-        }
-
-        else if (pressure >= 300 && pressure < 400) {
-            toX = (float) 1.4;
-            toY = (float) 1.4;
-        }
-
-        else if (pressure >= 400 && pressure < 500) {
-            toX = (float) 1.5;
-            toY = (float) 1.5;
-        }
-
-        else if (pressure >= 500 && pressure < 600) {
-            toX = (float) 1.6;
-            toY = (float) 1.6;
-        }
-
-        else if (pressure >= 600 && pressure < 700) {
-            toX = (float) 1.7;
-            toY = (float) 1.7;
-        }
-
-        else if (pressure >= 700 && pressure < 800) {
-            toX = (float) 1.8;
-            toY = (float) 1.8;
-        }
-
-        else if (pressure >= 800 && pressure < 900) {
-            toX = (float) 1.9;
-            toY = (float) 1.9;
-        }
-
         scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
-        scaleAnimation.setDuration(1000);
+        scaleAnimation.setDuration(DURATION);
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setInterpolator(new LinearInterpolator());
 
         baloon.startAnimation(scaleAnimation);
 
-        showPressureData.setText(pressure + "  mPa");
+        showPressureData.setText(pressure + " " + getString(R.string.unit_pressure));
 
         Detection proximityDetection = new Detection();
 

@@ -38,7 +38,7 @@
 
     <string name="unit_light">lux</string>
     <string name="unit_rotation">°</string>
-    <string name="unit_pressure">mPa</string>
+    <string name="unit_pressure">hPa</string>
     <string name="unit_proximity">cm</string>
     <string name="unit_accelerometer">m/s^2</string>
     <string name="unit_humidity">%</string>
