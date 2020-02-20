@@ -18,11 +18,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SensorHumidityActivity extends AppCompatActivity implements SensorEventListener {
 
+    private static final int NUM_DROPS = 14;
     private SensorManager mSensorManager;
     private Sensor mSensorHumidity;
     private Toolbar myToolbar;
@@ -31,21 +34,7 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
     private TextView showHumidityData;
     private Button mBtnHistory;
 
-    private ImageView mDrop1;
-    private ImageView mDrop2;
-    private ImageView mDrop3;
-    private ImageView mDrop4;
-    private ImageView mDrop5;
-    private ImageView mDrop6;
-    private ImageView mDrop7;
-    private ImageView mDrop8;
-    private ImageView mDrop9;
-    private ImageView mDrop10;
-    private ImageView mDrop11;
-    private ImageView mDrop12;
-    private ImageView mDrop13;
-    private ImageView mDrop14;
-
+    List<ImageView> drops = new ArrayList<ImageView>();
 
 
     @Override
@@ -76,21 +65,20 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
         detections = new HashSet<Detection>();
 
         //Getting drops references
-        mDrop1 = findViewById(R.id.drop1);
-        mDrop2 = findViewById(R.id.drop2);
-        mDrop3 = findViewById(R.id.drop3);
-        mDrop4 = findViewById(R.id.drop4);
-        mDrop5 = findViewById(R.id.drop5);
-        mDrop6 = findViewById(R.id.drop6);
-        mDrop7 = findViewById(R.id.drop7);
-        mDrop8 = findViewById(R.id.drop8);
-        mDrop9 = findViewById(R.id.drop9);
-        mDrop10 = findViewById(R.id.drop10);
-        mDrop11 = findViewById(R.id.drop11);
-        mDrop12 = findViewById(R.id.drop12);
-        mDrop13 = findViewById(R.id.drop13);
-        mDrop14 = findViewById(R.id.drop14);
-
+        drops.add((ImageView) findViewById(R.id.drop1));
+        drops.add((ImageView) findViewById(R.id.drop8));
+        drops.add((ImageView) findViewById(R.id.drop14));
+        drops.add((ImageView) findViewById(R.id.drop13));
+        drops.add((ImageView) findViewById(R.id.drop5));
+        drops.add((ImageView) findViewById(R.id.drop7));
+        drops.add((ImageView) findViewById(R.id.drop2));
+        drops.add((ImageView) findViewById(R.id.drop9));
+        drops.add((ImageView) findViewById(R.id.drop11));
+        drops.add((ImageView) findViewById(R.id.drop4));
+        drops.add((ImageView) findViewById(R.id.drop12));
+        drops.add((ImageView) findViewById(R.id.drop6));
+        drops.add((ImageView) findViewById(R.id.drop3));
+        drops.add((ImageView) findViewById(R.id.drop10));
 
 
     }
@@ -105,7 +93,7 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
 
         final float relativeHumidity = event.values[0];
 
-        showHumidityData.setText(String.valueOf(relativeHumidity) + " %");
+        showHumidityData.setText(String.valueOf(relativeHumidity) + " " + getString(R.string.unit_temperature));
 
         Detection humidityDetection = new Detection();
 
@@ -116,68 +104,19 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
         detections.add(humidityDetection);
 
         if(relativeHumidity > 0 && relativeHumidity <= 14) {
-            mDrop1.setVisibility(View.VISIBLE);
-            mDrop8.setVisibility(View.VISIBLE);
-            mDrop14.setVisibility(View.INVISIBLE);
-            mDrop13.setVisibility(View.INVISIBLE);
-            mDrop5.setVisibility(View.INVISIBLE);
-            mDrop7.setVisibility(View.INVISIBLE);
-            mDrop2.setVisibility(View.INVISIBLE);
-            mDrop9.setVisibility(View.INVISIBLE);
-            mDrop11.setVisibility(View.INVISIBLE);
-            mDrop4.setVisibility(View.INVISIBLE);
-            mDrop12.setVisibility(View.INVISIBLE);
-            mDrop6.setVisibility(View.INVISIBLE);
-            mDrop3.setVisibility(View.INVISIBLE);
-            mDrop10.setVisibility(View.INVISIBLE);
+            setDrops(0);
         } else if(relativeHumidity > 14 && relativeHumidity <= 28){
-            mDrop14.setVisibility(View.VISIBLE);
-            mDrop13.setVisibility(View.VISIBLE);
-            mDrop5.setVisibility(View.INVISIBLE);
-            mDrop7.setVisibility(View.INVISIBLE);
-            mDrop2.setVisibility(View.INVISIBLE);
-            mDrop9.setVisibility(View.INVISIBLE);
-            mDrop11.setVisibility(View.INVISIBLE);
-            mDrop4.setVisibility(View.INVISIBLE);
-            mDrop12.setVisibility(View.INVISIBLE);
-            mDrop6.setVisibility(View.INVISIBLE);
-            mDrop3.setVisibility(View.INVISIBLE);
-            mDrop10.setVisibility(View.INVISIBLE);
+            setDrops(2);
         } else if(relativeHumidity > 18 && relativeHumidity <= 32) {
-            mDrop5.setVisibility(View.VISIBLE);
-            mDrop7.setVisibility(View.VISIBLE);
-            mDrop2.setVisibility(View.INVISIBLE);
-            mDrop9.setVisibility(View.INVISIBLE);
-            mDrop11.setVisibility(View.INVISIBLE);
-            mDrop4.setVisibility(View.INVISIBLE);
-            mDrop12.setVisibility(View.INVISIBLE);
-            mDrop6.setVisibility(View.INVISIBLE);
-            mDrop3.setVisibility(View.INVISIBLE);
-            mDrop10.setVisibility(View.INVISIBLE);
+            setDrops(4);
         } else if(relativeHumidity > 32 && relativeHumidity <= 46) {
-            mDrop2.setVisibility(View.VISIBLE);
-            mDrop9.setVisibility(View.VISIBLE);
-            mDrop11.setVisibility(View.INVISIBLE);
-            mDrop4.setVisibility(View.INVISIBLE);
-            mDrop12.setVisibility(View.INVISIBLE);
-            mDrop6.setVisibility(View.INVISIBLE);
-            mDrop3.setVisibility(View.INVISIBLE);
-            mDrop10.setVisibility(View.INVISIBLE);
+            setDrops(6);
         } else if(relativeHumidity > 46 && relativeHumidity <= 60) {
-            mDrop11.setVisibility(View.VISIBLE);
-            mDrop4.setVisibility(View.VISIBLE);
-            mDrop12.setVisibility(View.INVISIBLE);
-            mDrop6.setVisibility(View.INVISIBLE);
-            mDrop3.setVisibility(View.INVISIBLE);
-            mDrop10.setVisibility(View.INVISIBLE);
+           setDrops(8);
         } else if(relativeHumidity > 60 && relativeHumidity <= 74)  {
-            mDrop12.setVisibility(View.VISIBLE);
-            mDrop6.setVisibility(View.VISIBLE);
-            mDrop3.setVisibility(View.INVISIBLE);
-            mDrop10.setVisibility(View.INVISIBLE);
+            setDrops(10);
         } else if(relativeHumidity > 74)  {
-            mDrop3.setVisibility(View.VISIBLE);
-            mDrop10.setVisibility(View.VISIBLE);
+            setDrops(12);
         }
 
     }
@@ -225,5 +164,19 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
         Intent intent = new Intent(this, HistoryActivity.class);
         intent.putExtra(DetectionOpenHelper.SENSOR_TYPE, Sensor.TYPE_RELATIVE_HUMIDITY);
         startActivity(intent);
+    }
+
+
+    private void setDrops(int index) {
+
+        int nextIndex = index + 1;
+        int shadowIndex = index + 2;
+
+        for (int i = index; i <= nextIndex; i++){
+            drops.get(i).setVisibility(View.VISIBLE);
+        }
+        for(int i = shadowIndex; i < NUM_DROPS; i++) {
+            drops.get(i).setVisibility(View.INVISIBLE);
+        }
     }
 }
