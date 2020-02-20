@@ -34,6 +34,13 @@
         <item quantity="other">%d steps</item>
     </plurals>
 
-    <string name="date">date</string>
     <string name="time">at time</string>
+
+    <string name="unit_light">lux</string>
+    <string name="unit_rotation">°</string>
+    <string name="unit_pressure">mPa</string>
+    <string name="unit_proximity">cm</string>
+    <string name="unit_accelerometer">m/s^2</string>
+    <string name="unit_humidity">%</string>
+    <string name="unit_temperature">°C</string>
 </resources>

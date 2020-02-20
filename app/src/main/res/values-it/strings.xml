@@ -34,7 +34,14 @@
     <string name="withoutTemperatureSensor">Sensore di Temperatura non trovato</string>
     <string name="temperatureSensor">Sensore di Temperatura</string>
 
-    <string name="date">data</string>
     <string name="time">alle ore</string>
+
+    <string name="unit_light">lux</string>
+    <string name="unit_rotation">°</string>
+    <string name="unit_pressure">mPa</string>
+    <string name="unit_proximity">cm</string>
+    <string name="unit_accelerometer">m/s^2</string>
+    <string name="unit_humidity">%</string>
+    <string name="unit_temperature">°C</string>
 
 </resources>

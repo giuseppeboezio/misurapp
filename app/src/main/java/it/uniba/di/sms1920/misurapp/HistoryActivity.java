@@ -13,7 +13,7 @@ import android.widget.Toolbar;
 
 public class HistoryActivity extends ListActivity {
 
-    private SimpleCursorAdapter mAdapter;
+    private ScalarDetectionAdapter mAdapter;
     private Toolbar myToolbar;
 
     @Override
@@ -69,16 +69,10 @@ public class HistoryActivity extends ListActivity {
             case Sensor.TYPE_RELATIVE_HUMIDITY:
             case Sensor.TYPE_PRESSURE:
             case Sensor.TYPE_AMBIENT_TEMPERATURE:
-                mAdapter = new SimpleCursorAdapter(this, R.layout.detection_row_scalar, cursor,
-                        new String[]{DetectionOpenHelper.ID, DetectionOpenHelper.DATETIME, DetectionOpenHelper.VALUE1},
-                        new int[] {R.id.id, R.id.datetime, R.id.value1}, 0);
+                mAdapter = new ScalarDetectionAdapter(this, cursor, sensorType);
                 break;
             default:
-                mAdapter = new SimpleCursorAdapter(this, R.layout.detection_row_vectorial, cursor,
-                           new String[]{DetectionOpenHelper.ID, DetectionOpenHelper.DATETIME, DetectionOpenHelper.VALUE1,
-                                   DetectionOpenHelper.VALUE2, DetectionOpenHelper.VALUE3},
-                            new int[] {R.id.id, R.id.datetime, R.id.value1,
-                        R.id.value2, R.id.value3}, 0);
+                mAdapter = new VectorialDetectionAdapter(this, cursor, sensorType);
 
         }
 
