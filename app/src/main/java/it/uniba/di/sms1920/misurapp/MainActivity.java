@@ -20,12 +20,16 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
 
+    public final static int NUM_SENSORS = 8;
     Resources res;
     GridView grid;
     SensorManager mSensorManager;
     Sensor mSensor;
-    private int[] sensorImages;
-    private String[] sensorNames;
+    private int[] mSensorTypes;
+    private int[] mSensorAvailable;
+    private int[] mSensorNotAvailable;
+    private int[] mSensorMainImages;
+    private String[] mSensorNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +45,36 @@ public class MainActivity extends AppCompatActivity {
 
         res = getResources();
 
-        //Creating gridview to display whole set sensors
-        sensorImages = new int[] {R.drawable.stepcounter_main, R.drawable.image_rotation_sensor,
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensorMainImages = new int[NUM_SENSORS];
+
+
+        mSensorTypes = new int []{Sensor.TYPE_STEP_COUNTER, Sensor.TYPE_ROTATION_VECTOR, Sensor.TYPE_LIGHT,
+        Sensor.TYPE_PROXIMITY, Sensor.TYPE_ACCELEROMETER, Sensor.TYPE_RELATIVE_HUMIDITY, Sensor.TYPE_PRESSURE,
+        Sensor.TYPE_AMBIENT_TEMPERATURE};
+
+        mSensorAvailable = new int[] {R.drawable.stepcounter_main, R.drawable.image_rotation_sensor,
         R.drawable.light_main, R.drawable.proximity_main, R.drawable.accelerometer_main, R.drawable.window, R.drawable.pressure_main,
                 R.drawable.temperature_main};
 
-        sensorNames = new String[] {res.getString(R.string.stepCounterSensor), res.getString(R.string.rotationSensor),
+        mSensorNotAvailable = new int[] {R.drawable.no_stepcounter_main, R.drawable.no_rotation_main, R.drawable.no_light_main,
+        R.drawable.no_proximity_main, R.drawable.no_accelerometer_main, R.drawable.no_humidity_main, R.drawable.no_pressure_main,
+        R.drawable.no_temperature_main};
+
+        mSensorNames = new String[] {res.getString(R.string.stepCounterSensor), res.getString(R.string.rotationSensor),
                 res.getString(R.string.lightSensor), res.getString(R.string.proximitySensor), res.getString(R.string.accelerometerSensor), res.getString(R.string.humiditySensor), res.getString(R.string.pressureSensor),
                 res.getString(R.string.temperatureSensor)};
 
-        CustomAdapter adapter = new CustomAdapter(getApplicationContext(),sensorNames, sensorImages);
+        for(int i = 0; i < NUM_SENSORS; i++) {
+            if(mSensorManager.getDefaultSensor(mSensorTypes[i]) != null) {
+                mSensorMainImages[i] = mSensorAvailable[i];
+            }
+            else {
+                mSensorMainImages[i] = mSensorNotAvailable[i];
+            }
+        }
+
+        CustomAdapter adapter = new CustomAdapter(getApplicationContext(),mSensorNames, mSensorMainImages);
         grid = findViewById(R.id.grid);
         grid.setAdapter(adapter);
 
