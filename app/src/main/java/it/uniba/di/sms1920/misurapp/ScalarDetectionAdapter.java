@@ -47,6 +47,7 @@ public class ScalarDetectionAdapter extends CursorAdapter {
 
         switch(mTypeSensor){
             case Sensor.TYPE_STEP_COUNTER:
+                txtValue.setVisibility(View.GONE);
                 String message = mContext.getResources().getQuantityString(R.plurals.numberSteps, Integer.parseInt(value), Integer.parseInt(value));
                 txtUnit.setText(message);
                 break;
