@@ -26,6 +26,9 @@ import java.util.Set;
 
 public class SensorProximityActivity extends AppCompatActivity implements SensorEventListener {
 
+    private static final int DURATION = 1000;
+    private static final int MAX_DISTANCE = 5;
+    private static final float ADDITIONAL_FACTOR = 0.7f;
     private SensorManager mSensorManager;
     private Sensor mSensorProximity;
     private ImageView highFiveHand;
@@ -80,29 +83,17 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
         fromX = toX;
         fromY = toY;
 
-        if (distance >= 4){
-
-            toX = 1;
-            toY = 1;
-        }
-        else if (distance >= 2 && distance < 4) {
-            toX = (float) 1.5;
-            toY = (float) 1.5;
-        }
-
-        else if (distance >= 0 && distance < 2) {
-            toX = (float) 1.7;
-            toY = (float) 1.7;
-        }
+        toX = distance / MAX_DISTANCE + ADDITIONAL_FACTOR;
+        toY = distance / MAX_DISTANCE + ADDITIONAL_FACTOR;
 
         scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
-        scaleAnimation.setDuration(1000);
+        scaleAnimation.setDuration(DURATION);
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setInterpolator(new LinearInterpolator());
 
         highFiveHand.startAnimation(scaleAnimation);
 
-        showProximityData.setText(distance + "  cm");
+        showProximityData.setText(distance + " " + getString(R.string.unit_proximity));
 
         Detection proximityDetection = new Detection();
 
