@@ -93,7 +93,7 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
 
         final float relativeHumidity = event.values[0];
 
-        showHumidityData.setText(String.valueOf(relativeHumidity) + " " + getString(R.string.unit_temperature));
+        showHumidityData.setText(String.valueOf(relativeHumidity) + " " + getString(R.string.unit_humidity));
 
         Detection humidityDetection = new Detection();
 
