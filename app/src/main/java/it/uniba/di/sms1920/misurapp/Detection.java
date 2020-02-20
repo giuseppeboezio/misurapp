@@ -63,7 +63,7 @@ public class Detection {
 
         String day = dateFormatted.substring(8, 10);
         String month = dateFormatted.substring(4, 7);
-        String year = dateFormatted.substring(24, 28);
+        String year = dateFormatted.substring(29, 34);
         String time = dateFormatted.substring(11, 19);
         result = day + " " + month + " " + year + " " + context.getString(R.string.time)
                 + " " + time;
