@@ -21,6 +21,7 @@ import java.util.Set;
 
 public class SensorRotationActivity extends AppCompatActivity implements SensorEventListener {
 
+    private static final int ROUND_CORNER = 360;
     ImageView compass_img;
     int mAzimuth;
     private SensorManager mSensorManager;
@@ -64,13 +65,13 @@ public class SensorRotationActivity extends AppCompatActivity implements SensorE
     public void onSensorChanged(SensorEvent event) {
 
         SensorManager.getRotationMatrixFromVector(rMat, event.values);
-        mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
+        mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + ROUND_CORNER) % ROUND_CORNER;
 
         SensorManager.getOrientation(rMat, orientation);
-        mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
+        mAzimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + ROUND_CORNER) % ROUND_CORNER;
 
         mAzimuth = Math.round(mAzimuth);
-        showRotationData.setText(mAzimuth + "°");
+        showRotationData.setText(mAzimuth + getString(R.string.unit_rotation));
         compass_img.setRotation(-mAzimuth);
 
         Detection rotationDetection = new Detection();
