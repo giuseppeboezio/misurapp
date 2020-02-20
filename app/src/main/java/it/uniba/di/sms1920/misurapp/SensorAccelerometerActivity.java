@@ -24,6 +24,11 @@ import java.util.Set;
 
 public class SensorAccelerometerActivity extends AppCompatActivity implements SensorEventListener {
 
+    private static final float MULTIPLY_FACTOR = 30f; //Multiplicative factor obtained sperimentally
+    private static final int MIN_ACCELERATION = 20;
+    private static final int MIN_SHAKE_Y_LEVEL = -3;
+    private final static int DURATION = 7000;
+    private final static float PIVOT = 0.5f;
     private SensorManager mSensorManager;
     private Sensor mSensorAccelerometer;
     private  ImageView wheel;
@@ -37,8 +42,8 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_accelerometer);
 
+        //Button for showing history details
         mBtnHistory = findViewById(R.id.btnHistory);
-
         mBtnHistory.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -77,12 +82,12 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
 
         float acceleration = Math.abs(x+y+z);
 
-        if(y < -3 && acceleration >= 20) {
+        if(y < MIN_SHAKE_Y_LEVEL && acceleration >= MIN_ACCELERATION) {
             fromDegree = toDegree;
-            toDegree = toDegree + acceleration * 30f;
+            toDegree = toDegree + acceleration * MULTIPLY_FACTOR;
             RotateAnimation rotateAnimation = new RotateAnimation(fromDegree, toDegree,  Animation.RELATIVE_TO_SELF,
-                    0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-            rotateAnimation.setDuration(7000);
+                    PIVOT, Animation.RELATIVE_TO_SELF, PIVOT);
+            rotateAnimation.setDuration(DURATION);
             rotateAnimation.setInterpolator(new DecelerateInterpolator());
             rotateAnimation.setFillAfter(true);
 
@@ -90,8 +95,9 @@ public class SensorAccelerometerActivity extends AppCompatActivity implements Se
 
         }
 
-        showAccelerometerData.setText("X: " + x + "  m/s^2" +
-                         "\n" + "Y: " +  y + "  m/s^2" + "\n" + "Z: " +  z + "  m/s^2");
+        showAccelerometerData.setText("X: " + x + " " + getString(R.string.unit_accelerometer) +
+                         "\n" + "Y: " +  y + "  " + getString(R.string.unit_accelerometer) + "\n" + "Z: " +  z +
+                " " + getString(R.string.unit_accelerometer));
 
         Detection accelerometerDetection = new Detection();
 
