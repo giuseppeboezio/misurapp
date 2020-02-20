@@ -13,8 +13,8 @@ public class SplashActivity extends AppCompatActivity {
 
     private static final String TAG_LOG = SplashActivity.class.getName();
 
-    private static final long MIN_WAIT_INTERVAL = 1500L;
-    private static final long MAX_WAIT_INTERVAL = 3000L;
+    private static final long MIN_WAIT_INTERVAL = 500L;
+    private static final long MAX_WAIT_INTERVAL = 1000L;
     private static final int GO_MAIN_ACTIVITY = 1;
 
     private long mStartTime;
