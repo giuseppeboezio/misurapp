@@ -25,6 +25,7 @@ import java.util.Set;
 
 public class SensorLightActivity extends AppCompatActivity implements SensorEventListener {
 
+    private static final int DIVISION_FACTOR = 1000;
     private SensorManager mSensorManager;
     private Sensor mSensorLight;
     private ImageView mSunglasses;
@@ -78,7 +79,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
     public final void onSensorChanged(SensorEvent event) {
         float lux = event.values[0];
 
-        showLightData.setText(String.valueOf(lux) + "  lx");
+        showLightData.setText(String.valueOf(lux) + " " + getString(R.string.unit_light));
         //Managing sensor change for persistance
 
         Detection lightDetection = new Detection();
@@ -93,21 +94,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
 
         fromAlpha = toAlpha;
 
-        if(lux < 100){
-            toAlpha = (float) 0.1;
-        } else if(lux >= 100 && lux < 200) {
-            toAlpha = (float) 0.3;
-        } else if(lux >= 200 && lux < 300) {
-            toAlpha = (float) 0.5;
-        } else if(lux >= 300 && lux < 400) {
-            toAlpha = (float) 0.7;
-        } else if(lux >= 400 && lux < 500) {
-            toAlpha = (float) 0.8;
-        } else if(lux >= 500 && lux < 600 ) {
-            toAlpha = (float) 0.9;
-        } else if(lux >= 600) {
-            toAlpha = (float) 1.0;
-        }
+        toAlpha = lux / DIVISION_FACTOR;
 
         mAlphaAnimation = new AlphaAnimation(fromAlpha, toAlpha);
         mAlphaAnimation.setDuration(1000);
