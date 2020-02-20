@@ -83,8 +83,8 @@ public class SensorProximityActivity extends AppCompatActivity implements Sensor
         fromX = toX;
         fromY = toY;
 
-        toX = distance / MAX_DISTANCE + ADDITIONAL_FACTOR;
-        toY = distance / MAX_DISTANCE + ADDITIONAL_FACTOR;
+        toX =  0.098f / (distance + 0.1f) + 1.02f;
+        toY = 0.098f / (distance + 0.1f) + 1.02f;
 
         scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
         scaleAnimation.setDuration(DURATION);
