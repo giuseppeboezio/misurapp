@@ -26,6 +26,7 @@ import java.util.Set;
 public class SensorLightActivity extends AppCompatActivity implements SensorEventListener {
 
     private static final int DIVISION_FACTOR = 1000;
+    private static final int DURATION = 1000;
     private SensorManager mSensorManager;
     private Sensor mSensorLight;
     private ImageView mSunglasses;
@@ -97,7 +98,7 @@ public class SensorLightActivity extends AppCompatActivity implements SensorEven
         toAlpha = lux / DIVISION_FACTOR;
 
         mAlphaAnimation = new AlphaAnimation(fromAlpha, toAlpha);
-        mAlphaAnimation.setDuration(1000);
+        mAlphaAnimation.setDuration(DURATION);
         mAlphaAnimation.setFillAfter(true);
         mAlphaAnimation.setInterpolator(new LinearInterpolator());
         mSunglasses.startAnimation(mAlphaAnimation);
