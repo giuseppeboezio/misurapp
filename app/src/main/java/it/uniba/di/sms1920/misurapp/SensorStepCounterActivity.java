@@ -27,6 +27,7 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
 
     private final float Y = 0.0f;
 
+    private static final int ADDITIONAL_FACTOR = 30;
     private SensorManager mSensorManager;
     private Sensor mSensorStepCounter;
     private ImageView girlOnBike;
@@ -95,7 +96,7 @@ public class SensorStepCounterActivity extends AppCompatActivity implements Sens
 
 
         fromX = toX;
-        toX = fromX + 30;
+        toX = fromX + ADDITIONAL_FACTOR;
 
         TranslateAnimation animation1 = new TranslateAnimation(fromX, toX,
                     Y, Y);
