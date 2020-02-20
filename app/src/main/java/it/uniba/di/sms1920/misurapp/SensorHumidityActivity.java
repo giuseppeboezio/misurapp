@@ -26,6 +26,8 @@ import java.util.Set;
 public class SensorHumidityActivity extends AppCompatActivity implements SensorEventListener {
 
     private static final int NUM_DROPS = 14;
+    private static final float MULTIPLICATION_FACTOR = 0.13f;
+    private int mIndex;
     private SensorManager mSensorManager;
     private Sensor mSensorHumidity;
     private Toolbar myToolbar;
@@ -103,20 +105,13 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
 
         detections.add(humidityDetection);
 
-        if(relativeHumidity > 0 && relativeHumidity <= 14) {
-            setDrops(0);
-        } else if(relativeHumidity > 14 && relativeHumidity <= 28){
-            setDrops(2);
-        } else if(relativeHumidity > 18 && relativeHumidity <= 32) {
-            setDrops(4);
-        } else if(relativeHumidity > 32 && relativeHumidity <= 46) {
-            setDrops(6);
-        } else if(relativeHumidity > 46 && relativeHumidity <= 60) {
-           setDrops(8);
-        } else if(relativeHumidity > 60 && relativeHumidity <= 74)  {
-            setDrops(10);
-        } else if(relativeHumidity > 74)  {
-            setDrops(12);
+        mIndex = Math.round(relativeHumidity * MULTIPLICATION_FACTOR);
+
+        for (int i = 0; i <= mIndex; i++){
+            drops.get(i).setVisibility(View.VISIBLE);
+        }
+        for(int i = mIndex; i < NUM_DROPS; i++) {
+            drops.get(i).setVisibility(View.INVISIBLE);
         }
 
     }
@@ -166,17 +161,4 @@ public class SensorHumidityActivity extends AppCompatActivity implements SensorE
         startActivity(intent);
     }
 
-
-    private void setDrops(int index) {
-
-        int nextIndex = index + 1;
-        int shadowIndex = index + 2;
-
-        for (int i = index; i <= nextIndex; i++){
-            drops.get(i).setVisibility(View.VISIBLE);
-        }
-        for(int i = shadowIndex; i < NUM_DROPS; i++) {
-            drops.get(i).setVisibility(View.INVISIBLE);
-        }
-    }
 }
