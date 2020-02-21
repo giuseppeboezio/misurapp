@@ -26,6 +26,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
     private final static float MIN_TEMPERATURE = 186.8f;
     private final static int DIVISION_FACTOR = 100;
     private final static float MULTIPLICATION_FACTOR = 2.41f;
+    private final static int MY_DELAY = 10000000;
     private int [] temperatureImages;
     private int mIndex;
     private ImageView temperature;
@@ -133,7 +134,7 @@ public class SensorTemperatureActivity extends AppCompatActivity implements Sens
     @Override
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this, mSensorTemperature, 10000000);
+        mSensorManager.registerListener(this, mSensorTemperature, MY_DELAY);
     }
 
     @Override
